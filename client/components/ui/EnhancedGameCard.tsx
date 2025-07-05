@@ -16,6 +16,8 @@ import QuickTap from "@/components/games/QuickTap";
 import PredictionMarket from "@/components/games/PredictionMarket";
 import ColorBlast from "@/components/games/ColorBlast";
 import UnlockVault from "@/components/games/UnlockVault";
+import MiniJackpot from "@/components/games/MiniJackpot";
+import OddOrEven from "@/components/games/OddOrEven";
 
 interface EnhancedGameCardProps {
   game: Game;
@@ -166,6 +168,20 @@ export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
       case "unlock-vault":
         return (
           <UnlockVault
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "mini-jackpot":
+        return (
+          <MiniJackpot
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "odd-or-even":
+        return (
+          <OddOrEven
             betAmount={betAmount}
             onGameComplete={handleGameComplete}
           />
