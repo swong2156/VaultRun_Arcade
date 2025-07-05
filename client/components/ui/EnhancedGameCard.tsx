@@ -20,6 +20,7 @@ import MiniJackpot from "@/components/games/MiniJackpot";
 import OddOrEven from "@/components/games/OddOrEven";
 import SuddenDeath from "@/components/games/SuddenDeath";
 import SpyFlip from "@/components/games/SpyFlip";
+import TapTarget from "@/components/games/TapTarget";
 
 interface EnhancedGameCardProps {
   game: Game;
@@ -198,6 +199,13 @@ export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
       case "spy-flip":
         return (
           <SpyFlip betAmount={betAmount} onGameComplete={handleGameComplete} />
+        );
+      case "tap-target":
+        return (
+          <TapTarget
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
         );
       default:
         // Generic game interface for games not yet implemented
