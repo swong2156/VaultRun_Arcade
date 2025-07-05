@@ -27,6 +27,11 @@ import StackCoins from "@/components/games/StackCoins";
 import CoinDuel from "@/components/games/CoinDuel";
 import HotCold from "@/components/games/HotCold";
 import RedEnvelope from "@/components/games/RedEnvelope";
+import MarketSlide from "@/components/games/MarketSlide";
+import PrecisionBet from "@/components/games/PrecisionBet";
+import BlockBreak from "@/components/games/BlockBreak";
+import OutrunBot from "@/components/games/OutrunBot";
+import GuessMultiplier from "@/components/games/GuessMultiplier";
 
 interface EnhancedGameCardProps {
   game: Game;
@@ -245,6 +250,41 @@ export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
       case "red-envelope":
         return (
           <RedEnvelope
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "market-slide":
+        return (
+          <MarketSlide
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "precision-bet":
+        return (
+          <PrecisionBet
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "block-break":
+        return (
+          <BlockBreak
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "outrun-bot":
+        return (
+          <OutrunBot
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "guess-multiplier":
+        return (
+          <GuessMultiplier
             betAmount={betAmount}
             onGameComplete={handleGameComplete}
           />
