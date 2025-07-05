@@ -13,6 +13,26 @@ export default function DiceGame({ betAmount, onGameComplete }: DiceGameProps) {
   const [isRolling, setIsRolling] = useState(false);
   const [result, setResult] = useState<number | null>(null);
   const [gameStarted, setGameStarted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(10); // 10 second time limit
+
+  // Time pressure countdown
+  useState(() => {
+    if (!gameStarted) return;
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          // Time's up - auto lose
+          onGameComplete(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  });
 
   const rollDice = async () => {
     if (selectedNumber === null) return;
@@ -20,18 +40,18 @@ export default function DiceGame({ betAmount, onGameComplete }: DiceGameProps) {
     setGameStarted(true);
     setIsRolling(true);
 
-    // Simulate dice roll
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // Faster dice roll
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
     const diceResult = Math.floor(Math.random() * 6) + 1;
     setResult(diceResult);
     setIsRolling(false);
 
-    // Check if player won
+    // Check if player won - harder payout
     const isWin = selectedNumber === diceResult;
     setTimeout(() => {
-      onGameComplete(isWin, isWin ? betAmount * 6 : 0);
-    }, 1000);
+      onGameComplete(isWin, isWin ? betAmount * 5 : 0); // Reduced from 6x to 5x
+    }, 800);
   };
 
   const numbers = [1, 2, 3, 4, 5, 6];
@@ -46,6 +66,9 @@ export default function DiceGame({ betAmount, onGameComplete }: DiceGameProps) {
         {!gameStarted && (
           <div className="space-y-6">
             <p className="text-lg text-muted-foreground">Pick a number 1-6!</p>
+            <div className="text-sm text-neon-orange font-bold">
+              ⏰ You have {timeLeft}s to choose and roll!
+            </div>
 
             <div className="grid grid-cols-3 gap-3">
               {numbers.map((num) => (

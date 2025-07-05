@@ -17,27 +17,28 @@ export default function CrashGame({
   const [hasCrashed, setHasCrashed] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const [cashedOut, setCashedOut] = useState(false);
-  const [crashPoint] = useState(1.5 + Math.random() * 8.5); // Random crash between 1.5x and 10x
+  const [crashPoint] = useState(1.2 + Math.random() * 3.8); // Random crash between 1.2x and 5x (harder)
 
   useEffect(() => {
     if (!isRunning) return;
 
     const interval = setInterval(() => {
       setMultiplier((prev) => {
-        const newMultiplier = prev + 0.01;
+        const increment = 0.02 + prev * 0.01; // Accelerating increment
+        const newMultiplier = prev + increment;
 
         if (newMultiplier >= crashPoint) {
           setHasCrashed(true);
           setIsRunning(false);
           if (!cashedOut) {
-            setTimeout(() => onGameComplete(false), 1000);
+            setTimeout(() => onGameComplete(false), 500);
           }
           return crashPoint;
         }
 
         return newMultiplier;
       });
-    }, 50);
+    }, 30); // Faster updates (was 50ms, now 30ms)
 
     return () => clearInterval(interval);
   }, [isRunning, crashPoint, cashedOut, onGameComplete]);
