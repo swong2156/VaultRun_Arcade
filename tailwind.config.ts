@@ -57,11 +57,29 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Gaming colors
+        neon: {
+          green: "hsl(var(--neon-green))",
+          blue: "hsl(var(--neon-blue))",
+          purple: "hsl(var(--neon-purple))",
+          orange: "hsl(var(--neon-orange))",
+          red: "hsl(var(--neon-red))",
+          yellow: "hsl(var(--neon-yellow))",
+        },
+        crypto: {
+          bitcoin: "hsl(var(--bitcoin))",
+          ethereum: "hsl(var(--ethereum))",
+          usdt: "hsl(var(--usdt))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        gaming: ["Orbitron", "monospace"],
+        cyber: ["Share Tech Mono", "monospace"],
       },
       keyframes: {
         "accordion-down": {
@@ -80,10 +98,60 @@ export default {
             height: "0",
           },
         },
+        "pulse-neon": {
+          "0%, 100%": {
+            opacity: "1",
+            filter: "drop-shadow(0 0 5px currentColor)",
+          },
+          "50%": {
+            opacity: "0.8",
+            filter: "drop-shadow(0 0 20px currentColor)",
+          },
+        },
+        float: {
+          "0%, 100%": {
+            transform: "translateY(0)",
+          },
+          "50%": {
+            transform: "translateY(-10px)",
+          },
+        },
+        "spin-slow": {
+          from: {
+            transform: "rotate(0deg)",
+          },
+          to: {
+            transform: "rotate(360deg)",
+          },
+        },
+        glitch: {
+          "0%": {
+            transform: "translate(0)",
+          },
+          "20%": {
+            transform: "translate(-2px, 2px)",
+          },
+          "40%": {
+            transform: "translate(-2px, -2px)",
+          },
+          "60%": {
+            transform: "translate(2px, 2px)",
+          },
+          "80%": {
+            transform: "translate(2px, -2px)",
+          },
+          "100%": {
+            transform: "translate(0)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "pulse-neon": "pulse-neon 2s ease-in-out infinite",
+        float: "float 3s ease-in-out infinite",
+        "spin-slow": "spin-slow 8s linear infinite",
+        glitch: "glitch 0.3s ease-in-out infinite",
       },
     },
   },
