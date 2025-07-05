@@ -76,30 +76,30 @@ export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
   const getWinChance = () => {
     switch (game.difficulty) {
       case "Easy":
-        return 0.35; // Reduced from 60% to 35%
+        return 0.55; // More balanced - good for beginners
       case "Medium":
-        return 0.25; // Reduced from 40% to 25%
+        return 0.4; // Fair middle ground
       case "Hard":
-        return 0.15; // Reduced from 25% to 15%
+        return 0.3; // Challenging but reasonable
       case "Extreme":
-        return 0.05; // Reduced from 10% to 5%
+        return 0.15; // Still very challenging but not hopeless
       default:
-        return 0.25;
+        return 0.4;
     }
   };
 
   const getWinMultiplier = () => {
     switch (game.difficulty) {
       case "Easy":
-        return 2.5; // Increased to compensate for lower win rate
+        return 1.8; // Balanced for 55% win rate
       case "Medium":
-        return 3.5; // Increased to compensate for lower win rate
+        return 2.3; // Balanced for 40% win rate
       case "Hard":
-        return 6.0; // Increased to compensate for lower win rate
+        return 3.2; // Balanced for 30% win rate
       case "Extreme":
-        return 15.0; // Increased to compensate for lower win rate
+        return 6.5; // High reward for 15% win rate
       default:
-        return 3.5;
+        return 2.3;
     }
   };
 
