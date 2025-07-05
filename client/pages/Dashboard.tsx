@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { motion } from "framer-motion";
-import GameCard from "@/components/ui/GameCard";
+import EnhancedGameCard from "@/components/ui/EnhancedGameCard";
 import { gamesList } from "@/components/games/gamesList";
 
 export default function Dashboard() {
@@ -209,7 +209,7 @@ export default function Dashboard() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index }}
                 >
-                  <GameCard game={game} />
+                  <EnhancedGameCard game={game} />
                 </motion.div>
               ))}
             </motion.div>
