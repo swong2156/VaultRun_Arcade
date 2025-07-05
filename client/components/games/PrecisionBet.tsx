@@ -166,7 +166,7 @@ export default function PrecisionBet({
                 <p>🎯 ±2.0: 8x multiplier</p>
                 <p>🎯 ±5.0: 5x multiplier</p>
                 <p>🎯 ±10.0: 3x multiplier</p>
-                <p>❌ >10.0: No reward</p>
+                <p>❌ &gt;10.0: No reward</p>
               </div>
             </div>
 
@@ -306,11 +306,7 @@ export default function PrecisionBet({
                     Won: $
                     {(
                       betAmount *
-                      (getDifference() <= 2
-                        ? 8
-                        : getDifference() <= 5
-                          ? 5
-                          : 3)
+                      (getDifference() <= 2 ? 8 : getDifference() <= 5 ? 5 : 3)
                     ).toFixed(2)}
                   </p>
                   <p className="text-sm text-green-300">
