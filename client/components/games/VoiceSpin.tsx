@@ -8,7 +8,10 @@ interface VoiceSpinProps {
   onGameComplete: (isWin: boolean, winAmount?: number) => void;
 }
 
-export default function VoiceSpin({ betAmount, onGameComplete }: VoiceSpinProps) {
+export default function VoiceSpin({
+  betAmount,
+  onGameComplete,
+}: VoiceSpinProps) {
   const [gamePhase, setGamePhase] = useState<
     "ready" | "listening" | "spinning" | "result"
   >("ready");
@@ -115,7 +118,7 @@ export default function VoiceSpin({ betAmount, onGameComplete }: VoiceSpinProps)
               <h3 className="text-lg font-bold mb-2">Voice Rules:</h3>
               <div className="text-sm space-y-1">
                 <p>🎤 5 seconds to make noise</p>
-                <p>📢 Volume > 30% to spin</p>
+                <p>📢 Volume &gt; 30% to spin</p>
                 <p>🔊 Louder = better multiplier</p>
                 <p>💰 80%+ volume: 3x multiplier</p>
               </div>
@@ -205,7 +208,8 @@ export default function VoiceSpin({ betAmount, onGameComplete }: VoiceSpinProps)
         {gamePhase === "spinning" && (
           <div className="space-y-6">
             <p className="text-lg text-muted-foreground">
-              Your yell power: <span className="font-bold">{Math.round(maxVolume)}%</span>
+              Your yell power:{" "}
+              <span className="font-bold">{Math.round(maxVolume)}%</span>
             </p>
 
             <motion.div
@@ -303,7 +307,8 @@ export default function VoiceSpin({ betAmount, onGameComplete }: VoiceSpinProps)
                   <p className="text-lg text-neon-green">
                     Won: $
                     {(
-                      betAmount * (maxVolume > 80 ? 3 : maxVolume > 60 ? 2.5 : 2)
+                      betAmount *
+                      (maxVolume > 80 ? 3 : maxVolume > 60 ? 2.5 : 2)
                     ).toFixed(2)}
                   </p>
                   <p className="text-sm text-green-300">
