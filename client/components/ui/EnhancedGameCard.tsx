@@ -32,6 +32,11 @@ import PrecisionBet from "@/components/games/PrecisionBet";
 import BlockBreak from "@/components/games/BlockBreak";
 import OutrunBot from "@/components/games/OutrunBot";
 import GuessMultiplier from "@/components/games/GuessMultiplier";
+import DodgeRoll from "@/components/games/DodgeRoll";
+import FollowPath from "@/components/games/FollowPath";
+import VoiceSpin from "@/components/games/VoiceSpin";
+import BankRun from "@/components/games/BankRun";
+import ComboPicker from "@/components/games/ComboPicker";
 
 interface EnhancedGameCardProps {
   game: Game;
@@ -285,6 +290,38 @@ export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
       case "guess-multiplier":
         return (
           <GuessMultiplier
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "dodge-roll":
+        return (
+          <DodgeRoll
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "follow-path":
+        return (
+          <FollowPath
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "voice-spin":
+        return (
+          <VoiceSpin
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "bank-run":
+        return (
+          <BankRun betAmount={betAmount} onGameComplete={handleGameComplete} />
+        );
+      case "combo-picker":
+        return (
+          <ComboPicker
             betAmount={betAmount}
             onGameComplete={handleGameComplete}
           />
