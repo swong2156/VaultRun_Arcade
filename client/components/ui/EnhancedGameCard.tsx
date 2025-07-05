@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useGame } from "@/context/GameContext";
+import { hapticFeedback } from "@/context/TelegramContext";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Game } from "@/components/games/gamesList";
 import FlipGame from "@/components/games/FlipGame";
@@ -71,20 +72,24 @@ export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
 
   const startGame = () => {
     if (!canAffordBet(betAmount)) {
+      hapticFeedback("notification");
       alert("Insufficient balance!");
       return;
     }
 
     // Deduct bet amount
     placeBet(betAmount, game.name);
+    hapticFeedback("selection");
     setShowGameModal(true);
   };
 
   const handleGameComplete = (isWin: boolean, winAmount: number = 0) => {
     if (isWin) {
       recordWin(betAmount, winAmount, game.name);
+      hapticFeedback("notification");
     } else {
       recordLoss(betAmount, game.name);
+      hapticFeedback("impact");
     }
     setShowGameModal(false);
   };

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("./telegram.css");
+
 @layer base {
   /**
    * VaultRun Gaming Theme

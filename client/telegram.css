@@ -1,0 +1,163 @@
+/* Telegram Mini App Optimizations */
+
+/* Remove default margins and ensure full viewport usage */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Telegram WebApp specific styles */
+.telegram-web-app {
+  /* Prevent zoom on input focus */
+  -webkit-text-size-adjust: 100%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Better touch targets for mobile */
+button,
+.clickable {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Optimize scrolling for Telegram */
+.scroll-container {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Prevent double-tap zoom */
+* {
+  touch-action: manipulation;
+}
+
+/* Improve tap highlight for better UX */
+button,
+a,
+[role="button"] {
+  -webkit-tap-highlight-color: rgba(22, 163, 74, 0.3);
+}
+
+/* Telegram theme transitions */
+.telegram-theme-transition {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Mobile-first responsive improvements */
+@media (max-width: 768px) {
+  /* Reduce padding on mobile */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Larger touch targets on mobile */
+  .game-card {
+    min-height: 200px;
+  }
+
+  /* Better spacing for mobile */
+  .mobile-spacing {
+    gap: 0.75rem;
+  }
+}
+
+/* Telegram status bar safe area */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .telegram-safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .telegram-safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Loading animations optimized for Telegram */
+.telegram-loading {
+  animation: telegramPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes telegramPulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Better modal behavior on mobile */
+.telegram-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
+
+/* Improved game interface for touch */
+.game-interface {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(9, 9, 11, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* Better button styles for Telegram */
+.telegram-button {
+  background: linear-gradient(135deg, rgb(22, 163, 74), rgb(34, 197, 94));
+  border: none;
+  border-radius: 0.75rem;
+  padding: 1rem 1.5rem;
+  color: white;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.4);
+}
+
+.telegram-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.4);
+}
+
+/* Optimize for Telegram's viewport */
+.telegram-viewport {
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height */
+}
+
+/* Better card interactions */
+.game-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(22, 163, 74, 0.15);
+}
+
+/* Telegram-specific dark mode variables */
+:root[data-theme="dark"] {
+  --telegram-bg: #2c2c2e;
+  --telegram-secondary-bg: #1c1c1e;
+  --telegram-text: #ffffff;
+  --telegram-secondary-text: #8e8e93;
+}
+
+:root[data-theme="light"] {
+  --telegram-bg: #ffffff;
+  --telegram-secondary-bg: #f2f2f7;
+  --telegram-text: #000000;
+  --telegram-secondary-text: #8e8e93;
+}

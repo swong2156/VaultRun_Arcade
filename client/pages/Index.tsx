@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTelegram } from "@/context/TelegramContext";
+import TelegramLoadingScreen from "@/components/ui/TelegramLoadingScreen";
 
 export default function Index() {
   const navigate = useNavigate();
+  const { isInTelegram, ready } = useTelegram();
   const [currentText, setCurrentText] = useState("Connecting to Chain...");
   const [showLogo, setShowLogo] = useState(false);
+  const [showTelegramLoader, setShowTelegramLoader] = useState(true);
 
   const loadingTexts = [
     "Connecting to Chain...",
@@ -16,29 +20,49 @@ export default function Index() {
   ];
 
   useEffect(() => {
-    // Show logo after 500ms
-    const logoTimer = setTimeout(() => {
-      setShowLogo(true);
-    }, 500);
+    if (!ready) return;
 
-    // Cycle through loading texts
-    let textIndex = 0;
-    const textTimer = setInterval(() => {
-      textIndex = (textIndex + 1) % loadingTexts.length;
-      setCurrentText(loadingTexts[textIndex]);
-    }, 800);
+    // Show Telegram loader for Telegram users, shorter for web
+    const telegramLoaderDuration = isInTelegram ? 2000 : 1000;
 
-    // Navigate to dashboard after 4 seconds
-    const navTimer = setTimeout(() => {
-      navigate("/dashboard");
-    }, 4000);
+    const telegramLoaderTimer = setTimeout(() => {
+      setShowTelegramLoader(false);
+
+      // Show logo after 500ms
+      const logoTimer = setTimeout(() => {
+        setShowLogo(true);
+      }, 500);
+
+      // Cycle through loading texts
+      let textIndex = 0;
+      const textTimer = setInterval(() => {
+        textIndex = (textIndex + 1) % loadingTexts.length;
+        setCurrentText(loadingTexts[textIndex]);
+      }, 800);
+
+      // Navigate to dashboard after shorter time
+      const navTimer = setTimeout(
+        () => {
+          navigate("/dashboard");
+        },
+        isInTelegram ? 3000 : 4000,
+      );
+
+      return () => {
+        clearTimeout(logoTimer);
+        clearInterval(textTimer);
+        clearTimeout(navTimer);
+      };
+    }, telegramLoaderDuration);
 
     return () => {
-      clearTimeout(logoTimer);
-      clearInterval(textTimer);
-      clearTimeout(navTimer);
+      clearTimeout(telegramLoaderTimer);
     };
-  }, [navigate]);
+  }, [navigate, ready, isInTelegram]);
+
+  if (showTelegramLoader && isInTelegram) {
+    return <TelegramLoadingScreen />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted flex items-center justify-center overflow-hidden relative">

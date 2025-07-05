@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useGame } from "@/context/GameContext";
+import { useTelegram } from "@/context/TelegramContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -25,6 +26,8 @@ export default function Dashboard() {
     gameStats,
     getCurrentBalance,
   } = useGame();
+
+  const { user, isInTelegram, colorScheme } = useTelegram();
 
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
@@ -86,8 +89,16 @@ export default function Dashboard() {
                 variant="outline"
                 className="bg-neon-green/10 text-neon-green border-neon-green"
               >
-                🟢 Connected
+                {isInTelegram ? "📱 Telegram" : "🟢 Web"}
               </Badge>
+              {user && (
+                <Badge
+                  variant="outline"
+                  className="bg-neon-blue/10 text-neon-blue border-neon-blue hidden sm:flex"
+                >
+                  👋 {user.first_name}
+                </Badge>
+              )}
             </div>
 
             <div className="flex items-center gap-4">
@@ -125,7 +136,7 @@ export default function Dashboard() {
       <div className="container mx-auto px-4 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Main Game Area */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 order-1">
             {/* Stats Cards */}
             <motion.div
               className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6"
@@ -197,7 +208,7 @@ export default function Dashboard() {
 
             {/* Games Grid */}
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
@@ -216,7 +227,7 @@ export default function Dashboard() {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 order-2 lg:order-2">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
