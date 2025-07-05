@@ -21,6 +21,10 @@ import OddOrEven from "@/components/games/OddOrEven";
 import SuddenDeath from "@/components/games/SuddenDeath";
 import SpyFlip from "@/components/games/SpyFlip";
 import TapTarget from "@/components/games/TapTarget";
+import MysteryBox from "@/components/games/MysteryBox";
+import RiskOrHold from "@/components/games/RiskOrHold";
+import StackCoins from "@/components/games/StackCoins";
+import CoinDuel from "@/components/games/CoinDuel";
 
 interface EnhancedGameCardProps {
   game: Game;
@@ -206,6 +210,31 @@ export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
             betAmount={betAmount}
             onGameComplete={handleGameComplete}
           />
+        );
+      case "mystery-box":
+        return (
+          <MysteryBox
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "risk-or-hold":
+        return (
+          <RiskOrHold
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "stack-coins":
+        return (
+          <StackCoins
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "coin-duel":
+        return (
+          <CoinDuel betAmount={betAmount} onGameComplete={handleGameComplete} />
         );
       default:
         // Generic game interface for games not yet implemented
