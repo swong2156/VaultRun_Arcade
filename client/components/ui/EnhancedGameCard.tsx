@@ -9,6 +9,8 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Game } from "@/components/games/gamesList";
 import FlipGame from "@/components/games/FlipGame";
 import CrashGame from "@/components/games/CrashGame";
+import DiceGame from "@/components/games/DiceGame";
+import RockPaperScissors from "@/components/games/RockPaperScissors";
 
 interface EnhancedGameCardProps {
   game: Game;
@@ -119,6 +121,17 @@ export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
       case "crash":
         return (
           <CrashGame
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "dice-roll":
+        return (
+          <DiceGame betAmount={betAmount} onGameComplete={handleGameComplete} />
+        );
+      case "rock-paper-scissors":
+        return (
+          <RockPaperScissors
             betAmount={betAmount}
             onGameComplete={handleGameComplete}
           />
