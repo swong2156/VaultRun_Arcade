@@ -11,6 +11,11 @@ import FlipGame from "@/components/games/FlipGame";
 import CrashGame from "@/components/games/CrashGame";
 import DiceGame from "@/components/games/DiceGame";
 import RockPaperScissors from "@/components/games/RockPaperScissors";
+import TimeBomb from "@/components/games/TimeBomb";
+import QuickTap from "@/components/games/QuickTap";
+import PredictionMarket from "@/components/games/PredictionMarket";
+import ColorBlast from "@/components/games/ColorBlast";
+import UnlockVault from "@/components/games/UnlockVault";
 
 interface EnhancedGameCardProps {
   game: Game;
@@ -132,6 +137,35 @@ export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
       case "rock-paper-scissors":
         return (
           <RockPaperScissors
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "time-bomb":
+        return (
+          <TimeBomb betAmount={betAmount} onGameComplete={handleGameComplete} />
+        );
+      case "quick-tap":
+        return (
+          <QuickTap betAmount={betAmount} onGameComplete={handleGameComplete} />
+        );
+      case "prediction-market":
+        return (
+          <PredictionMarket
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "color-blast":
+        return (
+          <ColorBlast
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "unlock-vault":
+        return (
+          <UnlockVault
             betAmount={betAmount}
             onGameComplete={handleGameComplete}
           />
