@@ -87,7 +87,15 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
 
     if (savedBalances) setBalances(JSON.parse(savedBalances));
     if (savedCurrency) setCurrentCurrency(savedCurrency as Currency);
-    if (savedHistory) setGameHistory(JSON.parse(savedHistory));
+    if (savedHistory) {
+      const parsedHistory = JSON.parse(savedHistory);
+      // Convert timestamp strings back to Date objects
+      const historyWithDates = parsedHistory.map((game: any) => ({
+        ...game,
+        timestamp: new Date(game.timestamp),
+      }));
+      setGameHistory(historyWithDates);
+    }
     if (savedStats) setGameStats(JSON.parse(savedStats));
   }, []);
 
