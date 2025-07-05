@@ -18,6 +18,8 @@ import ColorBlast from "@/components/games/ColorBlast";
 import UnlockVault from "@/components/games/UnlockVault";
 import MiniJackpot from "@/components/games/MiniJackpot";
 import OddOrEven from "@/components/games/OddOrEven";
+import SuddenDeath from "@/components/games/SuddenDeath";
+import SpyFlip from "@/components/games/SpyFlip";
 
 interface EnhancedGameCardProps {
   game: Game;
@@ -185,6 +187,17 @@ export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
             betAmount={betAmount}
             onGameComplete={handleGameComplete}
           />
+        );
+      case "sudden-death":
+        return (
+          <SuddenDeath
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
+        );
+      case "spy-flip":
+        return (
+          <SpyFlip betAmount={betAmount} onGameComplete={handleGameComplete} />
         );
       default:
         // Generic game interface for games not yet implemented
