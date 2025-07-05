@@ -25,6 +25,8 @@ import MysteryBox from "@/components/games/MysteryBox";
 import RiskOrHold from "@/components/games/RiskOrHold";
 import StackCoins from "@/components/games/StackCoins";
 import CoinDuel from "@/components/games/CoinDuel";
+import HotCold from "@/components/games/HotCold";
+import RedEnvelope from "@/components/games/RedEnvelope";
 
 interface EnhancedGameCardProps {
   game: Game;
@@ -235,6 +237,17 @@ export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
       case "coin-duel":
         return (
           <CoinDuel betAmount={betAmount} onGameComplete={handleGameComplete} />
+        );
+      case "hot-cold":
+        return (
+          <HotCold betAmount={betAmount} onGameComplete={handleGameComplete} />
+        );
+      case "red-envelope":
+        return (
+          <RedEnvelope
+            betAmount={betAmount}
+            onGameComplete={handleGameComplete}
+          />
         );
       default:
         // Generic game interface for games not yet implemented
