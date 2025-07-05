@@ -38,8 +38,8 @@ export default function SpyFlip({ betAmount, onGameComplete }: SpyFlipProps) {
             if (gamePhase === "selection" && selectedCoin !== null) {
               revealResult();
             } else {
-              // Time's up - auto lose
-              onGameComplete(false);
+              // Time's up - auto lose (with small delay to prevent setState during render)
+              setTimeout(() => onGameComplete(false), 0);
             }
             return 0;
           }
@@ -49,7 +49,7 @@ export default function SpyFlip({ betAmount, onGameComplete }: SpyFlipProps) {
 
       return () => clearInterval(timer);
     }
-  }, [gamePhase, selectedCoin]);
+  }, [gamePhase, selectedCoin, onGameComplete]);
 
   const startAnalysis = () => {
     setGamePhase("analysis");
