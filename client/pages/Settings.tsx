@@ -146,9 +146,11 @@ export default function Settings() {
                     </div>
                     <div className="text-center p-3 bg-gray-800 rounded-lg">
                       <div className="text-2xl font-bold text-yellow-500">
-                        {user.total_games > 0
+                        {(user.total_games || 0) > 0
                           ? Math.round(
-                              (user.total_wins / user.total_games) * 100,
+                              ((user.total_wins || 0) /
+                                (user.total_games || 1)) *
+                                100,
                             )
                           : 0}
                         %
