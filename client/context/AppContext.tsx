@@ -212,11 +212,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
     // Update theme when theme settings change
     if (newSettings.theme !== undefined) {
-      const htmlElement = document.documentElement;
-      if (newSettings.theme === "light") {
-        htmlElement.classList.add("light");
-      } else {
-        htmlElement.classList.remove("light");
+      try {
+        const htmlElement = document.documentElement;
+        if (newSettings.theme === "light") {
+          htmlElement.classList.add("light");
+        } else {
+          htmlElement.classList.remove("light");
+        }
+      } catch (error) {
+        // Ignore theme switching errors
       }
     }
 
