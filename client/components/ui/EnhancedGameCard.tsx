@@ -74,17 +74,38 @@ export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
     }
   };
 
-  const startGame = () => {
-    if (!canAffordBet(betAmount)) {
-      hapticFeedback("notification");
-      alert("Insufficient balance!");
+  const startGame = async () => {
+    if (!isConnected) {
+      toast.error("🔗 Please connect your wallet first");
+      await connect();
       return;
     }
 
-    // Deduct bet amount
-    placeBet(betAmount, game.name);
-    hapticFeedback("selection");
-    setShowGameModal(true);
+    if (!canAffordBet(betAmount)) {
+      hapticFeedback("notification");
+      toast.error("💰 Insufficient balance!");
+      return;
+    }
+
+    setIsProcessingTransaction(true);
+
+    try {
+      // Send stake transaction
+      const txHash = await sendStakeTransaction(betAmount, game.name);
+
+      if (txHash) {
+        hapticFeedback("selection");
+        toast.success("💎 Stake transaction confirmed!");
+        setShowGameModal(true);
+      } else {
+        toast.error("❌ Transaction failed or rejected");
+      }
+    } catch (error) {
+      console.error("Transaction error:", error);
+      toast.error("❌ Transaction failed");
+    } finally {
+      setIsProcessingTransaction(false);
+    }
   };
 
   const handleGameComplete = (isWin: boolean, winAmount: number = 0) => {
