@@ -50,7 +50,7 @@ export default function Settings() {
     await updateSettings({ sound_enabled: enabled });
     playSound("click");
     toast.success(
-      enabled ? "🔊 " + t("sound_enabled") : "🔇 " + t("sound_disabled"),
+      enabled ? "���� " + t("sound_enabled") : "🔇 " + t("sound_disabled"),
     );
   };
 
@@ -376,7 +376,9 @@ export default function Settings() {
                                         ? "🇹🇷"
                                         : code === "pt"
                                           ? "🇧🇷"
-                                          : "🌍"}
+                                          : code === "zh"
+                                            ? "🇨🇳"
+                                            : "🌍"}
                           </span>
                           {name}
                         </div>
