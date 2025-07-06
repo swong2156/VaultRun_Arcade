@@ -111,39 +111,84 @@ export default function Settings() {
         <div className="max-w-2xl mx-auto space-y-6">
           {/* Header */}
           <div className="text-center space-y-2">
-            <h1 className="text-4xl font-bold text-neon-green">⚙️ Settings</h1>
-            <p className="text-gray-400">Manage your account and preferences</p>
+            <h1 className="text-4xl font-bold text-neon-green">
+              ⚙️ {t("settings")}
+            </h1>
+            <p className="text-gray-400">{t("manage_preferences")}</p>
           </div>
 
           {/* User Info */}
-          {(isConnected || isInTelegram) && (
+          {(isConnected || isInTelegram || user) && (
             <Card className="bg-gray-900 border-neon-green">
               <CardHeader>
                 <CardTitle className="text-neon-green flex items-center gap-2">
                   <User className="w-5 h-5" />
-                  Account Information
+                  {t("account_information")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
+                {/* User Stats */}
+                {user && (
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                    <div className="text-center p-3 bg-gray-800 rounded-lg">
+                      <div className="text-2xl font-bold text-neon-green">
+                        {user.total_games}
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        {t("total_games")}
+                      </div>
+                    </div>
+                    <div className="text-center p-3 bg-gray-800 rounded-lg">
+                      <div className="text-2xl font-bold text-neon-blue">
+                        {user.total_wins}
+                      </div>
+                      <div className="text-xs text-gray-400">{t("wins")}</div>
+                    </div>
+                    <div className="text-center p-3 bg-gray-800 rounded-lg">
+                      <div className="text-2xl font-bold text-yellow-500">
+                        {user.total_games > 0
+                          ? Math.round(
+                              (user.total_wins / user.total_games) * 100,
+                            )
+                          : 0}
+                        %
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        {t("win_rate")}
+                      </div>
+                    </div>
+                    <div className="text-center p-3 bg-gray-800 rounded-lg">
+                      <div className="text-2xl font-bold text-neon-purple">
+                        {user.total_staked.toFixed(4)}
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        {t("total_staked")}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 {/* Telegram User */}
-                {isInTelegram && user && (
+                {isInTelegram && telegramUser && (
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-400">Platform</span>
+                      <span className="text-gray-400">{t("platform")}</span>
                       <Badge className="bg-blue-600 text-white">
                         <Smartphone className="w-3 h-3 mr-1" />
                         Telegram
                       </Badge>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-400">Username</span>
+                      <span className="text-gray-400">{t("username")}</span>
                       <span className="text-white">
-                        {user.username || user.first_name}
+                        {telegramUser.username || telegramUser.first_name}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-400">User ID</span>
-                      <span className="text-white font-mono">{user.id}</span>
+                      <span className="text-gray-400">{t("user_id")}</span>
+                      <span className="text-white font-mono">
+                        {telegramUser.id}
+                      </span>
                     </div>
                   </div>
                 )}
@@ -152,17 +197,22 @@ export default function Settings() {
                 {isConnected && address && (
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-400">Wallet Status</span>
+                      <span className="text-gray-400">
+                        {t("wallet_status")}
+                      </span>
                       <Badge className="bg-green-600 text-white">
                         <Wallet className="w-3 h-3 mr-1" />
-                        Connected
+                        {t("connected")}
                       </Badge>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-400">Address</span>
+                      <span className="text-gray-400">{t("address")}</span>
                       <Button
                         variant="ghost"
-                        onClick={copyAddress}
+                        onClick={() => {
+                          navigator.clipboard.writeText(address);
+                          toast.success("📋 " + t("address_copied"));
+                        }}
                         className="text-white font-mono text-sm h-auto p-1"
                       >
                         {address.slice(0, 6)}...{address.slice(-4)}
@@ -171,10 +221,10 @@ export default function Settings() {
                   </div>
                 )}
 
-                {!isConnected && (
+                {!isConnected && !user && (
                   <div className="text-center py-4">
                     <Wallet className="w-12 h-12 text-gray-600 mx-auto mb-2" />
-                    <p className="text-gray-400">No wallet connected</p>
+                    <p className="text-gray-400">{t("no_wallet_connected")}</p>
                   </div>
                 )}
               </CardContent>
