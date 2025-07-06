@@ -159,6 +159,12 @@ export const translations: Record<Language, Record<string, string>> = {
     share_link: "Compartir Enlace",
 
     // Settings
+    settings: "Configuración",
+    manage_preferences: "Gestiona tu cuenta y preferencias",
+    account_information: "Información de la Cuenta",
+    game_preferences: "Preferencias del Juego",
+    display_interface: "Pantalla e Interfaz",
+    security_privacy: "Seguridad y Privacidad",
     sound_effects: "Efectos de Sonido",
     haptic_feedback: "Retroalimentación Háptica",
     notifications: "Notificaciones",
@@ -166,6 +172,58 @@ export const translations: Record<Language, Record<string, string>> = {
     language: "Idioma",
     dark_mode: "Modo Oscuro",
     light_mode: "Modo Claro",
+
+    // Settings actions
+    sound_enabled: "Sonido activado",
+    sound_disabled: "Sonido desactivado",
+    dark_mode_enabled: "Modo oscuro activado",
+    light_mode_enabled: "Modo claro activado",
+    notifications_enabled: "Notificaciones activadas",
+    notifications_disabled: "Notificaciones desactivadas",
+    haptic_enabled: "Retroalimentación háptica activada",
+    haptic_disabled: "Retroalimentación háptica desactivada",
+    language_updated: "Idioma actualizado",
+    wallet_disconnected: "Billetera desconectada",
+    disconnect_failed: "Error al desconectar billetera",
+
+    // User interface
+    play_sounds_during_games: "Reproducir sonidos durante los juegos",
+    get_notified_about_games:
+      "Recibir notificaciones sobre victorias y derrotas",
+    vibrate_on_game_actions: "Vibrar en acciones del juego",
+    use_dark_theme_for_gaming:
+      "Usar tema oscuro para mejor experiencia de juego",
+    choose_your_language: "Elige tu idioma preferido",
+
+    // Status terms
+    platform: "Plataforma",
+    username: "Nombre de Usuario",
+    user_id: "ID de Usuario",
+    wallet_status: "Estado de Billetera",
+    address: "Dirección",
+    connected: "Conectado",
+    address_copied: "¡Dirección copiada!",
+    no_wallet_connected: "No hay billetera conectada",
+
+    // Stats
+    total_games: "Juegos Totales",
+    wins: "Victorias",
+    win_rate: "Tasa de Victoria",
+    total_staked: "Total Apostado",
+
+    // Security
+    privacy_notice: "Aviso de Privacidad",
+    data_usage: "Uso de Datos",
+    security_features: "Características de Seguridad",
+    privacy_notice_text:
+      "VaultRun se conecta de forma segura usando WalletConnect. Nunca solicitamos tus claves privadas, frase semilla o PIN. Todas las transacciones se firman desde tu billetera conectada.",
+    data_usage_text:
+      "Almacenamos tu historial de juegos y preferencias con backend Supabase. Tus datos personales están encriptados y seguros.",
+    wallet_connect_security: "Protocolo seguro WalletConnect v2",
+    no_private_key_storage: "No se almacenan claves privadas localmente",
+    user_controlled_transactions:
+      "Firma de transacciones controlada por el usuario",
+    encrypted_data_storage: "Almacenamiento y transmisión de datos encriptados",
   },
 
   fr: {
@@ -248,7 +306,7 @@ export const translations: Record<Language, Record<string, string>> = {
     // Messages
     you_won: "🎉 لقد فزت!",
     you_lost: "💔 لقد خسرت!",
-    insufficient_balance: "💰 رصيد ��ير كافي!",
+    insufficient_balance: "💰 رصيد غير كافي!",
     transaction_pending: "🪙 المعاملة قيد الانتظار...",
     transaction_confirmed: "💎 تم تأكيد المعاملة!",
     transaction_failed: "❌ فشلت المعاملة",
