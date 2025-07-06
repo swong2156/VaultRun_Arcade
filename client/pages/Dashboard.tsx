@@ -18,6 +18,7 @@ import { motion } from "framer-motion";
 import EnhancedGameCard from "@/components/ui/EnhancedGameCard";
 import { gamesList } from "@/components/games/gamesList";
 import Navigation from "@/components/ui/Navigation";
+import WalletConnectModal from "@/components/ui/WalletConnectModal";
 import {
   Wallet,
   Settings,
