@@ -5,9 +5,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
-import { createAppKit } from "@reown/appkit";
-import { EthersAdapter } from "@reown/appkit-adapter-ethers";
-import { mainnet, arbitrum, polygon, base } from "@reown/appkit/networks";
+import { toast } from "sonner";
 
 export type CryptoCurrency = "ETH" | "USDT" | "BTC" | "MATIC" | "BNB" | "DOGE";
 
