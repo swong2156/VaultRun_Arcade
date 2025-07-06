@@ -108,13 +108,29 @@ export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
     }
   };
 
-  const handleGameComplete = (isWin: boolean, winAmount: number = 0) => {
+  const handleGameComplete = async (isWin: boolean, winAmount: number = 0) => {
     if (isWin) {
-      recordWin(betAmount, winAmount, game.name);
-      hapticFeedback("notification");
+      try {
+        // Send win transaction
+        const txHash = await sendWinTransaction(winAmount, game.name);
+
+        if (txHash) {
+          hapticFeedback("notification");
+          toast.success(
+            `🎉 You won ${formatBalance(winAmount, currentCurrency)} ${currentCurrency}!`,
+          );
+        } else {
+          toast.error("❌ Win transaction failed");
+        }
+      } catch (error) {
+        console.error("Win transaction error:", error);
+        toast.error("❌ Failed to process winnings");
+      }
     } else {
-      recordLoss(betAmount, game.name);
       hapticFeedback("impact");
+      toast.error(
+        `💔 You lost ${formatBalance(betAmount, currentCurrency)} ${currentCurrency}`,
+      );
     }
     setShowGameModal(false);
   };
