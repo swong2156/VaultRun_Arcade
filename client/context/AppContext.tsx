@@ -151,6 +151,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setSettings(userData.settings || defaultSettings);
         setLanguageState((userData.settings?.language as Language) || "en");
 
+        // Apply theme
+        const theme = userData.settings?.theme || "dark";
+        const htmlElement = document.documentElement;
+        if (theme === "light") {
+          htmlElement.classList.add("light");
+        } else {
+          htmlElement.classList.remove("light");
+        }
+
+        // Apply sound settings
+        enableSounds(userData.settings?.sound_enabled ?? true);
+
         // Load referral stats
         await loadReferralStats(userData.id);
       }
