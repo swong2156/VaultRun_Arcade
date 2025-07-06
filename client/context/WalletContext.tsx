@@ -297,6 +297,10 @@ export function WalletProvider({ children }: { children: ReactNode }) {
         return amount.toFixed(4);
       case "DOGE":
         return amount.toFixed(2);
+      case "ADA":
+        return amount.toFixed(4);
+      case "SOL":
+        return amount.toFixed(4);
       default:
         return amount.toFixed(4);
     }
