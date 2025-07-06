@@ -47,14 +47,17 @@ interface EnhancedGameCardProps {
 export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
   const {
     canAffordBet,
-    placeBet,
-    recordWin,
-    recordLoss,
+    sendStakeTransaction,
+    sendWinTransaction,
     getCurrentBalance,
     currentCurrency,
-  } = useGame();
-  const [betAmount, setBetAmount] = useState(10);
+    isConnected,
+    connect,
+    formatBalance,
+  } = useWallet();
+  const [betAmount, setBetAmount] = useState(0.01); // Start with crypto-appropriate amounts
   const [showGameModal, setShowGameModal] = useState(false);
+  const [isProcessingTransaction, setIsProcessingTransaction] = useState(false);
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
