@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGame } from "@/context/GameContext";
+import { useWallet } from "@/context/WalletContext";
 import { useTelegram } from "@/context/TelegramContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -16,6 +16,15 @@ import {
 import { motion } from "framer-motion";
 import EnhancedGameCard from "@/components/ui/EnhancedGameCard";
 import { gamesList } from "@/components/games/gamesList";
+import { useNavigate } from "react-router-dom";
+import {
+  Wallet,
+  Settings,
+  History,
+  Users,
+  HelpCircle,
+  ExternalLink,
+} from "lucide-react";
 
 export default function Dashboard() {
   const {
