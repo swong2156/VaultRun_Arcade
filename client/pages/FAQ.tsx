@@ -161,159 +161,160 @@ export default function FAQ() {
       <Navigation />
       <div className="main-content p-4">
         <div className="max-w-4xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold text-neon-green">
-            📚 Frequently Asked Questions
-          </h1>
-          <p className="text-gray-400">
-            Everything you need to know about VaultRun
-          </p>
-        </div>
-
-        {/* Category Selection */}
-        <Card className="bg-gray-900 border-gray-700">
-          <CardHeader>
-            <CardTitle className="text-white">Categories</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
-              {categories.map((category) => {
-                const IconComponent = category.icon;
-                return (
-                  <Button
-                    key={category.id}
-                    variant={
-                      selectedCategory === category.id ? "default" : "ghost"
-                    }
-                    onClick={() => setSelectedCategory(category.id)}
-                    className={`flex flex-col gap-2 h-auto p-3 ${
-                      selectedCategory === category.id
-                        ? "bg-neon-green text-black"
-                        : "text-gray-400 hover:text-white"
-                    }`}
-                  >
-                    <IconComponent className="w-5 h-5" />
-                    <span className="text-xs">{category.name}</span>
-                  </Button>
-                );
-              })}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* FAQ Items */}
-        <Card className="bg-gray-900 border-gray-700">
-          <CardHeader>
-            <CardTitle className="text-white">
-              {categories.find((cat) => cat.id === selectedCategory)?.name}{" "}
-              Questions
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            {filteredFAQs.map((faq) => (
-              <Collapsible
-                key={faq.id}
-                open={openItems.includes(faq.id)}
-                onOpenChange={() => toggleItem(faq.id)}
-              >
-                <CollapsibleTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-between text-left h-auto p-4 bg-gray-800 hover:bg-gray-750 text-white"
-                  >
-                    <span className="font-medium">{faq.question}</span>
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform ${
-                        openItems.includes(faq.id) ? "rotate-180" : ""
-                      }`}
-                    />
-                  </Button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="px-4 pb-4">
-                  <div className="text-gray-300 leading-relaxed pt-2">
-                    {faq.answer}
-                  </div>
-                </CollapsibleContent>
-              </Collapsible>
-            ))}
-          </CardContent>
-        </Card>
-
-        {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Card className="bg-gray-900 border-neon-blue">
-            <CardContent className="p-6 text-center">
-              <Wallet className="w-12 h-12 text-neon-blue mx-auto mb-3" />
-              <h3 className="text-white font-semibold mb-2">
-                Need Help Connecting?
-              </h3>
-              <p className="text-gray-400 text-sm mb-4">
-                Check out our wallet connection guide
-              </p>
-              <Button
-                variant="outline"
-                className="border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-black"
-                disabled
-              >
-                <ExternalLink className="w-4 h-4 mr-2" />
-                Guide Coming Soon
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gray-900 border-neon-purple">
-            <CardContent className="p-6 text-center">
-              <Users className="w-12 h-12 text-neon-purple mx-auto mb-3" />
-              <h3 className="text-white font-semibold mb-2">
-                Still Need Help?
-              </h3>
-              <p className="text-gray-400 text-sm mb-4">
-                Join our community for support
-              </p>
-              <Button
-                variant="outline"
-                className="border-neon-purple text-neon-purple hover:bg-neon-purple hover:text-black"
-                disabled
-              >
-                <ExternalLink className="w-4 h-4 mr-2" />
-                Support Coming Soon
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Important Notice */}
-        <Card className="bg-yellow-900/20 border-yellow-500">
-          <CardContent className="p-6">
-            <div className="flex items-start gap-3">
-              <Shield className="w-6 h-6 text-yellow-500 mt-1" />
-              <div>
-                <h3 className="text-yellow-400 font-semibold mb-2">
-                  🔒 Security Reminder
-                </h3>
-                <p className="text-yellow-200 text-sm">
-                  Always verify you're on the official VaultRun website before
-                  connecting your wallet. We will never ask for your private
-                  keys or seed phrase. Be cautious of phishing attempts and only
-                  use official links.
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Contact Info */}
-        <Card className="bg-gray-900 border-gray-700">
-          <CardContent className="p-6 text-center">
-            <h3 className="text-white font-semibold mb-2">
-              Didn't find what you're looking for?
-            </h3>
-            <p className="text-gray-400 text-sm">
-              More help resources and contact options coming soon!
+          {/* Header */}
+          <div className="text-center space-y-2">
+            <h1 className="text-4xl font-bold text-neon-green">
+              📚 Frequently Asked Questions
+            </h1>
+            <p className="text-gray-400">
+              Everything you need to know about VaultRun
             </p>
-          </CardContent>
-        </Card>
+          </div>
+
+          {/* Category Selection */}
+          <Card className="bg-gray-900 border-gray-700">
+            <CardHeader>
+              <CardTitle className="text-white">Categories</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+                {categories.map((category) => {
+                  const IconComponent = category.icon;
+                  return (
+                    <Button
+                      key={category.id}
+                      variant={
+                        selectedCategory === category.id ? "default" : "ghost"
+                      }
+                      onClick={() => setSelectedCategory(category.id)}
+                      className={`flex flex-col gap-2 h-auto p-3 ${
+                        selectedCategory === category.id
+                          ? "bg-neon-green text-black"
+                          : "text-gray-400 hover:text-white"
+                      }`}
+                    >
+                      <IconComponent className="w-5 h-5" />
+                      <span className="text-xs">{category.name}</span>
+                    </Button>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* FAQ Items */}
+          <Card className="bg-gray-900 border-gray-700">
+            <CardHeader>
+              <CardTitle className="text-white">
+                {categories.find((cat) => cat.id === selectedCategory)?.name}{" "}
+                Questions
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {filteredFAQs.map((faq) => (
+                <Collapsible
+                  key={faq.id}
+                  open={openItems.includes(faq.id)}
+                  onOpenChange={() => toggleItem(faq.id)}
+                >
+                  <CollapsibleTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-between text-left h-auto p-4 bg-gray-800 hover:bg-gray-750 text-white"
+                    >
+                      <span className="font-medium">{faq.question}</span>
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform ${
+                          openItems.includes(faq.id) ? "rotate-180" : ""
+                        }`}
+                      />
+                    </Button>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="px-4 pb-4">
+                    <div className="text-gray-300 leading-relaxed pt-2">
+                      {faq.answer}
+                    </div>
+                  </CollapsibleContent>
+                </Collapsible>
+              ))}
+            </CardContent>
+          </Card>
+
+          {/* Quick Actions */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Card className="bg-gray-900 border-neon-blue">
+              <CardContent className="p-6 text-center">
+                <Wallet className="w-12 h-12 text-neon-blue mx-auto mb-3" />
+                <h3 className="text-white font-semibold mb-2">
+                  Need Help Connecting?
+                </h3>
+                <p className="text-gray-400 text-sm mb-4">
+                  Check out our wallet connection guide
+                </p>
+                <Button
+                  variant="outline"
+                  className="border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-black"
+                  disabled
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Guide Coming Soon
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-gray-900 border-neon-purple">
+              <CardContent className="p-6 text-center">
+                <Users className="w-12 h-12 text-neon-purple mx-auto mb-3" />
+                <h3 className="text-white font-semibold mb-2">
+                  Still Need Help?
+                </h3>
+                <p className="text-gray-400 text-sm mb-4">
+                  Join our community for support
+                </p>
+                <Button
+                  variant="outline"
+                  className="border-neon-purple text-neon-purple hover:bg-neon-purple hover:text-black"
+                  disabled
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Support Coming Soon
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Important Notice */}
+          <Card className="bg-yellow-900/20 border-yellow-500">
+            <CardContent className="p-6">
+              <div className="flex items-start gap-3">
+                <Shield className="w-6 h-6 text-yellow-500 mt-1" />
+                <div>
+                  <h3 className="text-yellow-400 font-semibold mb-2">
+                    🔒 Security Reminder
+                  </h3>
+                  <p className="text-yellow-200 text-sm">
+                    Always verify you're on the official VaultRun website before
+                    connecting your wallet. We will never ask for your private
+                    keys or seed phrase. Be cautious of phishing attempts and
+                    only use official links.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Contact Info */}
+          <Card className="bg-gray-900 border-gray-700">
+            <CardContent className="p-6 text-center">
+              <h3 className="text-white font-semibold mb-2">
+                Didn't find what you're looking for?
+              </h3>
+              <p className="text-gray-400 text-sm">
+                More help resources and contact options coming soon!
+              </p>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
