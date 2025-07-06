@@ -17,6 +17,7 @@ import {
   UserSettings,
 } from "@/lib/supabase";
 import { Language, getTranslation } from "@/lib/i18n";
+import { soundEngine, SoundType, enableSounds } from "@/lib/sounds";
 import { toast } from "sonner";
 
 interface AppContextType {
