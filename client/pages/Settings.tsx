@@ -34,60 +34,66 @@ import { toast } from "sonner";
 
 export default function Settings() {
   const { isConnected, address, disconnect } = useWallet();
-  const { user, isInTelegram } = useTelegram();
-  const [soundEnabled, setSoundEnabled] = useState(true);
-  const [darkMode, setDarkMode] = useState(true);
-  const [notifications, setNotifications] = useState(true);
-  const [hapticFeedback, setHapticFeedback] = useState(true);
+  const { user: telegramUser, isInTelegram } = useTelegram();
+  const {
+    user,
+    settings,
+    updateSettings,
+    language,
+    setLanguage,
+    t,
+    playSound,
+    haptic,
+  } = useApp();
 
-  useEffect(() => {
-    // Load settings from localStorage
-    const savedSound = localStorage.getItem("vaultrun_sound");
-    const savedDarkMode = localStorage.getItem("vaultrun_darkmode");
-    const savedNotifications = localStorage.getItem("vaultrun_notifications");
-    const savedHaptic = localStorage.getItem("vaultrun_haptic");
-
-    if (savedSound !== null) setSoundEnabled(savedSound === "true");
-    if (savedDarkMode !== null) setDarkMode(savedDarkMode === "true");
-    if (savedNotifications !== null)
-      setNotifications(savedNotifications === "true");
-    if (savedHaptic !== null) setHapticFeedback(savedHaptic === "true");
-  }, []);
-
-  const handleSoundToggle = (enabled: boolean) => {
-    setSoundEnabled(enabled);
-    localStorage.setItem("vaultrun_sound", enabled.toString());
-    toast.success(enabled ? "🔊 Sound enabled" : "🔇 Sound disabled");
-  };
-
-  const handleDarkModeToggle = (enabled: boolean) => {
-    setDarkMode(enabled);
-    localStorage.setItem("vaultrun_darkmode", enabled.toString());
-    toast.success(enabled ? "🌙 Dark mode enabled" : "☀️ Light mode enabled");
-  };
-
-  const handleNotificationsToggle = (enabled: boolean) => {
-    setNotifications(enabled);
-    localStorage.setItem("vaultrun_notifications", enabled.toString());
+  const handleSoundToggle = async (enabled: boolean) => {
+    await updateSettings({ sound_enabled: enabled });
+    playSound("click");
     toast.success(
-      enabled ? "🔔 Notifications enabled" : "🔕 Notifications disabled",
+      enabled ? "🔊 " + t("sound_enabled") : "🔇 " + t("sound_disabled"),
     );
   };
 
-  const handleHapticToggle = (enabled: boolean) => {
-    setHapticFeedback(enabled);
-    localStorage.setItem("vaultrun_haptic", enabled.toString());
+  const handleDarkModeToggle = async (enabled: boolean) => {
+    await updateSettings({ theme: enabled ? "dark" : "light" });
+    haptic("light");
     toast.success(
-      enabled ? "📳 Haptic feedback enabled" : "📴 Haptic feedback disabled",
+      enabled
+        ? "🌙 " + t("dark_mode_enabled")
+        : "☀️ " + t("light_mode_enabled"),
     );
+  };
+
+  const handleNotificationsToggle = async (enabled: boolean) => {
+    await updateSettings({ notifications_enabled: enabled });
+    haptic("light");
+    toast.success(
+      enabled
+        ? "🔔 " + t("notifications_enabled")
+        : "🔕 " + t("notifications_disabled"),
+    );
+  };
+
+  const handleHapticToggle = async (enabled: boolean) => {
+    await updateSettings({ haptic_enabled: enabled });
+    if (enabled) haptic("medium");
+    toast.success(
+      enabled ? "📳 " + t("haptic_enabled") : "📴 " + t("haptic_disabled"),
+    );
+  };
+
+  const handleLanguageChange = async (newLanguage: Language) => {
+    await setLanguage(newLanguage);
+    playSound("click");
+    toast.success("🌍 " + t("language_updated"));
   };
 
   const handleDisconnect = async () => {
     try {
       await disconnect();
-      toast.success("👋 Wallet disconnected");
+      toast.success("👋 " + t("wallet_disconnected"));
     } catch (error) {
-      toast.error("Failed to disconnect wallet");
+      toast.error(t("disconnect_failed"));
     }
   };
 
