@@ -310,40 +310,78 @@ export default function Settings() {
           <Card className="bg-gray-900 border-gray-700">
             <CardHeader>
               <CardTitle className="text-white flex items-center gap-2">
-                <Globe className="w-5 h-5" />
-                Display & Interface
+                <Palette className="w-5 h-5" />
+                {t("display_interface")}
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  {darkMode ? (
+                  {settings.theme === "dark" ? (
                     <Moon className="w-5 h-5 text-neon-blue" />
                   ) : (
                     <Sun className="w-5 h-5 text-yellow-500" />
                   )}
                   <div>
-                    <div className="text-white font-medium">Dark Mode</div>
+                    <div className="text-white font-medium">{t("theme")}</div>
                     <div className="text-sm text-gray-400">
-                      Use dark theme for better gaming experience
+                      {t("use_dark_theme_for_gaming")}
                     </div>
                   </div>
                 </div>
                 <Switch
-                  checked={darkMode}
+                  checked={settings.theme === "dark"}
                   onCheckedChange={handleDarkModeToggle}
                 />
               </div>
 
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <span className="text-neon-green text-xl">🌍</span>
+                  <Globe className="w-5 h-5 text-neon-green" />
                   <div>
-                    <div className="text-white font-medium">Language</div>
-                    <div className="text-sm text-gray-400">English (US)</div>
+                    <div className="text-white font-medium">
+                      {t("language")}
+                    </div>
+                    <div className="text-sm text-gray-400">
+                      {t("choose_your_language")}
+                    </div>
                   </div>
                 </div>
-                <Badge variant="secondary">Coming Soon</Badge>
+                <Select value={language} onValueChange={handleLanguageChange}>
+                  <SelectTrigger className="w-[180px] bg-gray-800 border-gray-600 text-white">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-800 border-gray-600">
+                    {Object.entries(languages).map(([code, name]) => (
+                      <SelectItem
+                        key={code}
+                        value={code}
+                        className="text-white hover:bg-gray-700"
+                      >
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg">
+                            {code === "en"
+                              ? "🇺🇸"
+                              : code === "es"
+                                ? "🇪🇸"
+                                : code === "fr"
+                                  ? "🇫🇷"
+                                  : code === "ar"
+                                    ? "🇸🇦"
+                                    : code === "de"
+                                      ? "🇩🇪"
+                                      : code === "tr"
+                                        ? "🇹🇷"
+                                        : code === "pt"
+                                          ? "🇧🇷"
+                                          : "🌍"}
+                          </span>
+                          {name}
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             </CardContent>
           </Card>
