@@ -5,14 +5,9 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
-import { createAppKit } from "@walletconnect/appkit";
-import { EthersAdapter } from "@walletconnect/appkit-adapter-ethers";
-import {
-  mainnet,
-  arbitrum,
-  polygon,
-  base,
-} from "@walletconnect/appkit/networks";
+import { createAppKit } from "@reown/appkit";
+import { EthersAdapter } from "@reown/appkit-adapter-ethers";
+import { mainnet, arbitrum, polygon, base } from "@reown/appkit/networks";
 
 export type CryptoCurrency = "ETH" | "USDT" | "BTC" | "MATIC" | "BNB" | "DOGE";
 
