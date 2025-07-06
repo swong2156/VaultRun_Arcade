@@ -17,14 +17,7 @@ import { motion } from "framer-motion";
 import EnhancedGameCard from "@/components/ui/EnhancedGameCard";
 import { gamesList } from "@/components/games/gamesList";
 import Navigation from "@/components/ui/Navigation";
-import {
-  Wallet,
-  Settings,
-  History,
-  Users,
-  HelpCircle,
-  ExternalLink,
-} from "lucide-react";
+import { Wallet, Settings, History, Users, HelpCircle, ExternalLink } from "lucide-react";
 
 export default function Dashboard() {
   const {
@@ -46,18 +39,9 @@ export default function Dashboard() {
 
   // Calculate game stats from transactions
   const gameStats = {
-    totalGames: transactions.filter((tx) => tx.type === "stake").length,
-    wins: transactions.filter((tx) => tx.type === "win").length,
-    losses: transactions.filter(
-      (tx) =>
-        tx.type === "stake" &&
-        !transactions.some(
-          (winTx) =>
-            winTx.type === "win" &&
-            winTx.gameName === tx.gameName &&
-            Math.abs(winTx.timestamp.getTime() - tx.timestamp.getTime()) < 5000,
-        ),
-    ).length,
+    totalGames: transactions.filter(tx => tx.type === 'stake').length,
+    wins: transactions.filter(tx => tx.type === 'win').length,
+    losses: transactions.filter(tx => tx.type === 'stake' && !transactions.some(winTx => winTx.type === 'win' && winTx.gameName === tx.gameName && Math.abs(winTx.timestamp.getTime() - tx.timestamp.getTime()) < 5000)).length,
     winStreak: 0, // Would need more complex calculation
   };
 
@@ -94,8 +78,10 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
+    <div className="min-h-screen bg-black">
+      <Navigation />
+      <div className="main-content">
+        {/* Header */}
       <motion.div
         className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-40"
         initial={{ y: -100 }}
@@ -130,7 +116,7 @@ export default function Dashboard() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => navigate("/referral")}
+                  onClick={() => navigate('/referral')}
                   className="text-xs"
                 >
                   <Users className="w-3 h-3 mr-1" />
@@ -139,7 +125,7 @@ export default function Dashboard() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => navigate("/history")}
+                  onClick={() => navigate('/history')}
                   className="text-xs"
                 >
                   <History className="w-3 h-3 mr-1" />
@@ -148,7 +134,7 @@ export default function Dashboard() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => navigate("/settings")}
+                  onClick={() => navigate('/settings')}
                   className="text-xs"
                 >
                   <Settings className="w-3 h-3 mr-1" />
@@ -157,7 +143,7 @@ export default function Dashboard() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => navigate("/faq")}
+                  onClick={() => navigate('/faq')}
                   className="text-xs"
                 >
                   <HelpCircle className="w-3 h-3 mr-1" />
@@ -194,9 +180,7 @@ export default function Dashboard() {
                   <Card className="bg-gradient-to-r from-primary/20 to-neon-blue/20 border-primary/30">
                     <CardContent className="p-2 md:p-4">
                       <div className="text-center">
-                        <p className="text-xs md:text-sm text-muted-foreground">
-                          Balance
-                        </p>
+                        <p className="text-xs md:text-sm text-muted-foreground">Balance</p>
                         <p className="text-sm md:text-xl font-bold text-neon-green">
                           {getCurrencyIcon(currentCurrency)}{" "}
                           {formatBalance(getCurrentBalance(), currentCurrency)}
