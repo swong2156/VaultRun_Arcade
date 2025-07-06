@@ -198,6 +198,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
       enableSounds(newSettings.sound_enabled);
     }
 
+    // Update theme when theme settings change
+    if (newSettings.theme !== undefined) {
+      const htmlElement = document.documentElement;
+      if (newSettings.theme === "light") {
+        htmlElement.classList.add("light");
+      } else {
+        htmlElement.classList.remove("light");
+      }
+    }
+
     try {
       await supabase
         .from("users")
