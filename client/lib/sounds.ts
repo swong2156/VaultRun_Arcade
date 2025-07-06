@@ -254,44 +254,61 @@ class SoundEngine {
   ) {
     if (!this.audioContext) return;
 
-    const oscillator = this.audioContext.createOscillator();
-    const gainNode = this.audioContext.createGain();
+    try {
+      const oscillator = this.audioContext.createOscillator();
+      const gainNode = this.audioContext.createGain();
 
-    oscillator.connect(gainNode);
-    gainNode.connect(this.audioContext.destination);
+      oscillator.connect(gainNode);
+      gainNode.connect(this.audioContext.destination);
 
-    oscillator.frequency.setValueAtTime(
-      frequency,
-      this.audioContext.currentTime,
-    );
-    oscillator.type = type;
-
-    const currentTime = this.audioContext.currentTime;
-
-    if (envelope) {
-      // ADSR envelope
-      gainNode.gain.setValueAtTime(0, currentTime);
-      gainNode.gain.linearRampToValueAtTime(
-        volume,
-        currentTime + envelope.attack,
+      oscillator.frequency.setValueAtTime(
+        frequency,
+        this.audioContext.currentTime,
       );
-      gainNode.gain.linearRampToValueAtTime(
-        volume * envelope.sustain,
-        currentTime + envelope.attack + envelope.decay,
-      );
-      gainNode.gain.setValueAtTime(
-        volume * envelope.sustain,
-        currentTime + duration - envelope.release,
-      );
-      gainNode.gain.linearRampToValueAtTime(0, currentTime + duration);
-    } else {
-      // Simple volume envelope
-      gainNode.gain.setValueAtTime(volume, currentTime);
-      gainNode.gain.exponentialRampToValueAtTime(0.01, currentTime + duration);
+      oscillator.type = type;
+
+      const currentTime = this.audioContext.currentTime;
+
+      if (envelope) {
+        // ADSR envelope
+        gainNode.gain.setValueAtTime(0, currentTime);
+        gainNode.gain.linearRampToValueAtTime(
+          volume,
+          currentTime + envelope.attack,
+        );
+        gainNode.gain.linearRampToValueAtTime(
+          volume * envelope.sustain,
+          currentTime + envelope.attack + envelope.decay,
+        );
+        gainNode.gain.setValueAtTime(
+          volume * envelope.sustain,
+          currentTime + duration - envelope.release,
+        );
+        gainNode.gain.linearRampToValueAtTime(0, currentTime + duration);
+      } else {
+        // Simple volume envelope
+        gainNode.gain.setValueAtTime(volume, currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(
+          0.01,
+          currentTime + duration,
+        );
+      }
+
+      oscillator.start(currentTime);
+      oscillator.stop(currentTime + duration);
+
+      // Clean up oscillator after it stops
+      oscillator.addEventListener("ended", () => {
+        try {
+          oscillator.disconnect();
+          gainNode.disconnect();
+        } catch (error) {
+          // Ignore cleanup errors
+        }
+      });
+    } catch (error) {
+      // Ignore audio creation errors
     }
-
-    oscillator.start(currentTime);
-    oscillator.stop(currentTime + duration);
   }
 
   // Special effect sounds
