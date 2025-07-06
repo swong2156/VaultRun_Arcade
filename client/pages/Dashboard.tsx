@@ -16,7 +16,7 @@ import {
 import { motion } from "framer-motion";
 import EnhancedGameCard from "@/components/ui/EnhancedGameCard";
 import { gamesList } from "@/components/games/gamesList";
-import { useNavigate } from "react-router-dom";
+import Navigation from "@/components/ui/Navigation";
 import {
   Wallet,
   Settings,
