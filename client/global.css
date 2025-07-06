@@ -4,6 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Navigation Layout Styles */
+@media (min-width: 1024px) {
+  .main-content {
+    margin-left: 16rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .main-content {
+    padding-bottom: 5rem;
+  }
+}
+
 @layer base {
   /**
    * VaultRun Gaming Theme
