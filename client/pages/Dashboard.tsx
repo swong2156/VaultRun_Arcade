@@ -398,7 +398,7 @@ export default function Dashboard() {
                             <span className="font-medium">{currency}</span>
                           </div>
                           <span className="font-bold">
-                            {formatBalance(amount, currency)}
+                            {formatBalance(amount, currency as any)}
                           </span>
                         </div>
                       ))}
