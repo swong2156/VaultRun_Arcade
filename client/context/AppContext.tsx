@@ -152,12 +152,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
         setLanguageState((userData.settings?.language as Language) || "en");
 
         // Apply theme
-        const theme = userData.settings?.theme || "dark";
-        const htmlElement = document.documentElement;
-        if (theme === "light") {
-          htmlElement.classList.add("light");
-        } else {
-          htmlElement.classList.remove("light");
+        try {
+          const theme = userData.settings?.theme || "dark";
+          const htmlElement = document.documentElement;
+          if (theme === "light") {
+            htmlElement.classList.add("light");
+          } else {
+            htmlElement.classList.remove("light");
+          }
+        } catch (error) {
+          // Ignore theme setup errors
         }
 
         // Apply sound settings
