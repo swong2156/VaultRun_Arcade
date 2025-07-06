@@ -440,35 +440,77 @@ export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
 
             {/* Bet Input */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <Input
-                  type="number"
-                  value={betAmount}
-                  onChange={(e) => setBetAmount(Number(e.target.value))}
-                  min="1"
-                  max={getCurrentBalance()}
-                  className="flex-1 bg-muted/50 border-primary/20"
-                  placeholder="Bet amount"
-                />
+              {!isConnected ? (
                 <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() =>
-                    setBetAmount(Math.min(getCurrentBalance(), 100))
-                  }
-                  className="text-xs"
+                  onClick={connect}
+                  className="w-full bg-gradient-to-r from-neon-green to-neon-blue hover:from-neon-green/80 hover:to-neon-blue/80 transition-all duration-300"
                 >
-                  Max
+                  🔗 Connect Wallet to Play
                 </Button>
-              </div>
+              ) : (
+                <>
+                  <div className="flex items-center gap-2">
+                    <Input
+                      type="number"
+                      value={betAmount}
+                      onChange={(e) => setBetAmount(Number(e.target.value))}
+                      step={
+                        currentCurrency === "BTC"
+                          ? "0.00001"
+                          : currentCurrency === "ETH"
+                            ? "0.0001"
+                            : "0.01"
+                      }
+                      min={
+                        currentCurrency === "BTC"
+                          ? "0.00001"
+                          : currentCurrency === "ETH"
+                            ? "0.0001"
+                            : "0.01"
+                      }
+                      max={getCurrentBalance()}
+                      className="flex-1 bg-muted/50 border-primary/20"
+                      placeholder="Bet amount"
+                    />
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() =>
+                        setBetAmount(
+                          Math.min(
+                            getCurrentBalance(),
+                            currentCurrency === "BTC"
+                              ? 0.001
+                              : currentCurrency === "ETH"
+                                ? 0.1
+                                : 100,
+                          ),
+                        )
+                      }
+                      className="text-xs"
+                    >
+                      Max
+                    </Button>
+                  </div>
 
-              <Button
-                onClick={startGame}
-                disabled={!canAffordBet(betAmount)}
-                className="w-full bg-gradient-to-r from-primary to-neon-blue hover:from-primary/80 hover:to-neon-blue/80 transition-all duration-300"
-              >
-                Play {game.name}
-              </Button>
+                  <Button
+                    onClick={startGame}
+                    disabled={
+                      !canAffordBet(betAmount) || isProcessingTransaction
+                    }
+                    className="w-full bg-gradient-to-r from-primary to-neon-blue hover:from-primary/80 hover:to-neon-blue/80 transition-all duration-300"
+                  >
+                    {isProcessingTransaction ? (
+                      <>🔄 Processing...</>
+                    ) : (
+                      <>
+                        💎 Stake {formatBalance(betAmount, currentCurrency)}{" "}
+                        {currentCurrency}
+                      </>
+                    )}
+                  </Button>
+                </>
+              )}
             </div>
 
             {/* Quick Multiplier Info */}
