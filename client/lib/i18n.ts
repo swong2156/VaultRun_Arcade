@@ -53,6 +53,12 @@ export const translations: Record<Language, Record<string, string>> = {
     share_link: "Share Link",
 
     // Settings
+    settings: "Settings",
+    manage_preferences: "Manage your account and preferences",
+    account_information: "Account Information",
+    game_preferences: "Game Preferences",
+    display_interface: "Display & Interface",
+    security_privacy: "Security & Privacy",
     sound_effects: "Sound Effects",
     haptic_feedback: "Haptic Feedback",
     notifications: "Notifications",
@@ -60,6 +66,55 @@ export const translations: Record<Language, Record<string, string>> = {
     language: "Language",
     dark_mode: "Dark Mode",
     light_mode: "Light Mode",
+
+    // Settings actions
+    sound_enabled: "Sound enabled",
+    sound_disabled: "Sound disabled",
+    dark_mode_enabled: "Dark mode enabled",
+    light_mode_enabled: "Light mode enabled",
+    notifications_enabled: "Notifications enabled",
+    notifications_disabled: "Notifications disabled",
+    haptic_enabled: "Haptic feedback enabled",
+    haptic_disabled: "Haptic feedback disabled",
+    language_updated: "Language updated",
+    wallet_disconnected: "Wallet disconnected",
+    disconnect_failed: "Failed to disconnect wallet",
+
+    // User interface
+    play_sounds_during_games: "Play sounds during games",
+    get_notified_about_games: "Get notified about wins and losses",
+    vibrate_on_game_actions: "Vibrate on game actions",
+    use_dark_theme_for_gaming: "Use dark theme for better gaming experience",
+    choose_your_language: "Choose your preferred language",
+
+    // Status terms
+    platform: "Platform",
+    username: "Username",
+    user_id: "User ID",
+    wallet_status: "Wallet Status",
+    address: "Address",
+    connected: "Connected",
+    address_copied: "Address copied!",
+    no_wallet_connected: "No wallet connected",
+
+    // Stats
+    total_games: "Total Games",
+    wins: "Wins",
+    win_rate: "Win Rate",
+    total_staked: "Total Staked",
+
+    // Security
+    privacy_notice: "Privacy Notice",
+    data_usage: "Data Usage",
+    security_features: "Security Features",
+    privacy_notice_text:
+      "VaultRun connects securely using WalletConnect. We never request your private keys, seed phrase, or PIN. All wallet transactions are signed inside your connected wallet.",
+    data_usage_text:
+      "We store your game history and preferences with Supabase backend. Your personal data is encrypted and secure.",
+    wallet_connect_security: "WalletConnect v2 secure protocol",
+    no_private_key_storage: "No private keys stored locally",
+    user_controlled_transactions: "User-controlled transaction signing",
+    encrypted_data_storage: "Encrypted data storage and transmission",
   },
 
   es: {
@@ -193,7 +248,7 @@ export const translations: Record<Language, Record<string, string>> = {
     // Messages
     you_won: "🎉 لقد فزت!",
     you_lost: "💔 لقد خسرت!",
-    insufficient_balance: "💰 رصيد غير كافي!",
+    insufficient_balance: "💰 رصيد ��ير كافي!",
     transaction_pending: "🪙 المعاملة قيد الانتظار...",
     transaction_confirmed: "💎 تم تأكيد المعاملة!",
     transaction_failed: "❌ فشلت المعاملة",
