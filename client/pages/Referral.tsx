@@ -3,6 +3,7 @@ import { useWallet } from "@/context/WalletContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import Navigation from "@/components/ui/Navigation";
 import { Copy, Users, Coins, Share2, Gift } from "lucide-react";
 import { toast } from "sonner";
 
