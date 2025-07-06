@@ -415,6 +415,12 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+
+      {/* Wallet Connect Modal */}
+      <WalletConnectModal
+        open={showWalletModal}
+        onOpenChange={setShowWalletModal}
+      />
     </div>
   );
 }
