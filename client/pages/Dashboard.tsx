@@ -31,14 +31,35 @@ export default function Dashboard() {
     balances,
     currentCurrency,
     setCurrency,
-    gameHistory,
-    gameStats,
+    transactions,
+    isConnected,
+    address,
+    connect,
     getCurrentBalance,
-  } = useGame();
+    formatBalance,
+  } = useWallet();
 
   const { user, isInTelegram, colorScheme } = useTelegram();
+  const navigate = useNavigate();
 
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+
+  // Calculate game stats from transactions
+  const gameStats = {
+    totalGames: transactions.filter((tx) => tx.type === "stake").length,
+    wins: transactions.filter((tx) => tx.type === "win").length,
+    losses: transactions.filter(
+      (tx) =>
+        tx.type === "stake" &&
+        !transactions.some(
+          (winTx) =>
+            winTx.type === "win" &&
+            winTx.gameName === tx.gameName &&
+            Math.abs(winTx.timestamp.getTime() - tx.timestamp.getTime()) < 5000,
+        ),
+    ).length,
+    winStreak: 0, // Would need more complex calculation
+  };
 
   const categories = [
     { id: "all", name: "All Games", emoji: "🎮" },
