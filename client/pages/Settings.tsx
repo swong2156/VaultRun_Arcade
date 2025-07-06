@@ -132,7 +132,7 @@ export default function Settings() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                     <div className="text-center p-3 bg-gray-800 rounded-lg">
                       <div className="text-2xl font-bold text-neon-green">
-                        {user.total_games}
+                        {user.total_games || 0}
                       </div>
                       <div className="text-xs text-gray-400">
                         {t("total_games")}
@@ -369,7 +369,7 @@ export default function Settings() {
                                   : code === "ar"
                                     ? "🇸🇦"
                                     : code === "de"
-                                      ? "��🇪"
+                                      ? "🇩��"
                                       : code === "tr"
                                         ? "🇹🇷"
                                         : code === "pt"
