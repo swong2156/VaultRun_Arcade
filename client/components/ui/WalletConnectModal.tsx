@@ -111,6 +111,8 @@ export default function WalletConnectModal({
   }, [open]);
 
   const handleWalletSelect = async (walletId: string) => {
+    if (selectedWallet || connecting) return;
+
     try {
       setSelectedWallet(walletId);
       playSound("click");
@@ -124,7 +126,10 @@ export default function WalletConnectModal({
     } catch (error) {
       console.error("Wallet connection failed:", error);
     } finally {
-      setSelectedWallet(null);
+      // Use timeout to prevent rapid state changes
+      setTimeout(() => {
+        setSelectedWallet(null);
+      }, 100);
     }
   };
 
