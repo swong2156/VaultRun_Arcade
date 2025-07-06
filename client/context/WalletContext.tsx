@@ -194,11 +194,14 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     amount: number,
     gameName: string,
   ): Promise<string | null> => {
-    if (!isConnected || !address) {
-      // For demo mode, just simulate a transaction
+    try {
+      // Simulate transaction processing
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // Generate mock transaction hash
       const mockTx: Transaction = {
         id: Date.now().toString(),
-        hash: `0x${Math.random().toString(16).substr(2, 40)}`,
+        hash: `0x${Math.random().toString(16).substr(2, 64)}`,
         gameName,
         amount,
         currency: currentCurrency,
@@ -209,48 +212,13 @@ export function WalletProvider({ children }: { children: ReactNode }) {
 
       setTransactions((prev) => [mockTx, ...prev.slice(0, 49)]);
 
-      // Deduct from mock balance
+      // Deduct from balance
       setBalances((prev) => ({
         ...prev,
         [currentCurrency]: Math.max(0, prev[currentCurrency] - amount),
       }));
 
       return mockTx.hash;
-    }
-
-    try {
-      // Real transaction logic would go here
-      const provider = ethersAdapter.getWalletConnectProvider();
-      if (!provider) throw new Error("No provider available");
-
-      // Create transaction
-      const tx = {
-        to: "0x742d35Cc6634C0532925a3b8D581C9F63d92d7f2", // Game contract address
-        value: (amount * 1e18).toString(), // Convert to wei
-        gasLimit: "21000",
-      };
-
-      // Send transaction
-      const result = await provider.request({
-        method: "eth_sendTransaction",
-        params: [tx],
-      });
-
-      // Record transaction
-      const transaction: Transaction = {
-        id: Date.now().toString(),
-        hash: result as string,
-        gameName,
-        amount,
-        currency: currentCurrency,
-        type: "stake",
-        status: "pending",
-        timestamp: new Date(),
-      };
-
-      setTransactions((prev) => [transaction, ...prev.slice(0, 49)]);
-
-      return result as string;
     } catch (error) {
       console.error("Transaction failed:", error);
       return null;
