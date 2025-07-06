@@ -127,20 +127,6 @@ export default function Navigation() {
           </div>
         </div>
       </div>
-
-      {/* Main Content Offset for Desktop */}
-      <style jsx global>{`
-        @media (min-width: 1024px) {
-          .main-content {
-            margin-left: 16rem;
-          }
-        }
-        @media (max-width: 1023px) {
-          .main-content {
-            padding-bottom: 5rem;
-          }
-        }
-      `}</style>
     </>
   );
 }
