@@ -8,12 +8,15 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { WalletProvider } from "@/context/WalletContext";
 import { TelegramProvider } from "@/context/TelegramContext";
+import { AppProvider } from "@/context/AppContext";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
+import Arcade from "./pages/Arcade";
 import Referral from "./pages/Referral";
 import Settings from "./pages/Settings";
 import TransactionHistory from "./pages/TransactionHistory";
 import FAQ from "./pages/FAQ";
+import Leaderboard from "./pages/Leaderboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
