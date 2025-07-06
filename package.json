@@ -23,9 +23,13 @@
   "dependencies": {
     "@reown/appkit": "^1.7.12",
     "@reown/appkit-adapter-ethers": "^1.7.12",
+    "@supabase/supabase-js": "^2.50.3",
+    "@wagmi/connectors": "^5.8.5",
+    "@wagmi/core": "^2.17.3",
     "@walletconnect/web3wallet": "^1.16.1",
     "ethers": "^6.15.0",
     "express": "^4.18.2",
+    "viem": "^2.31.7",
     "zod": "^3.23.8"
   },
   "devDependencies": {
