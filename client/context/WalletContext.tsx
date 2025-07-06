@@ -64,31 +64,8 @@ interface WalletContextType {
 
 const WalletContext = createContext<WalletContextType | undefined>(undefined);
 
-// WalletConnect Project ID
-const projectId = "fa4b37eb3e10e3437345e2e6cc130c0b";
-
-// Networks
-const networks = [mainnet, arbitrum, polygon, base];
-
-// Create modal
-const metadata = {
-  name: "VaultRun",
-  description: "Crypto Game Arcade",
-  url: "https://vault-run-arcade.vercel.app",
-  icons: ["https://vault-run-arcade.vercel.app/favicon.ico"],
-};
-
-const ethersAdapter = new EthersAdapter();
-
-createAppKit({
-  adapters: [ethersAdapter],
-  networks,
-  metadata,
-  projectId,
-  features: {
-    analytics: true,
-  },
-});
+// For demo purposes, we'll simulate wallet connection
+// In production, this would be replaced with actual WalletConnect/Reown integration
 
 const initialBalances: WalletBalance = {
   ETH: 0,
