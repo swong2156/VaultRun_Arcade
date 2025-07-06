@@ -229,36 +229,13 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     amount: number,
     gameName: string,
   ): Promise<string | null> => {
-    if (!isConnected || !address) {
-      // For demo mode, just simulate adding winnings
-      const mockTx: Transaction = {
-        id: Date.now().toString(),
-        hash: `0x${Math.random().toString(16).substr(2, 40)}`,
-        gameName,
-        amount,
-        currency: currentCurrency,
-        type: "win",
-        status: "confirmed",
-        timestamp: new Date(),
-      };
-
-      setTransactions((prev) => [mockTx, ...prev.slice(0, 49)]);
-
-      // Add to mock balance
-      setBalances((prev) => ({
-        ...prev,
-        [currentCurrency]: prev[currentCurrency] + amount,
-      }));
-
-      return mockTx.hash;
-    }
-
     try {
-      // In a real implementation, this would be handled by the smart contract
-      // For now, just record the win
+      // Simulate transaction processing
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       const transaction: Transaction = {
         id: Date.now().toString(),
-        hash: `0x${Math.random().toString(16).substr(2, 40)}`,
+        hash: `0x${Math.random().toString(16).substr(2, 64)}`,
         gameName,
         amount,
         currency: currentCurrency,
@@ -268,7 +245,12 @@ export function WalletProvider({ children }: { children: ReactNode }) {
       };
 
       setTransactions((prev) => [transaction, ...prev.slice(0, 49)]);
-      await refreshBalances();
+
+      // Add to balance
+      setBalances((prev) => ({
+        ...prev,
+        [currentCurrency]: prev[currentCurrency] + amount,
+      }));
 
       return transaction.hash;
     } catch (error) {
