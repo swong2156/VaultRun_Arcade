@@ -330,50 +330,45 @@ export default function Dashboard() {
                     <CardContent className="p-0">
                       <ScrollArea className="h-[500px]">
                         <div className="p-4 space-y-3">
-                          {gameHistory.length === 0 ? (
+                          {transactions.length === 0 ? (
                             <p className="text-center text-muted-foreground py-8">
-                              No games played yet
+                              No transactions yet
                             </p>
                           ) : (
-                            gameHistory.slice(0, 20).map((game) => (
+                            transactions.slice(0, 20).map((tx) => (
                               <div
-                                key={game.id}
+                                key={tx.id}
                                 className="flex items-center justify-between p-3 rounded-lg bg-muted/50"
                               >
                                 <div>
                                   <p className="font-medium text-sm">
-                                    {game.gameName}
+                                    {tx.gameName}
                                   </p>
                                   <p className="text-xs text-muted-foreground">
-                                    {game.timestamp.toLocaleTimeString()}
+                                    {tx.timestamp.toLocaleTimeString()}
                                   </p>
                                 </div>
                                 <div className="text-right">
                                   <p
                                     className={`text-sm font-bold ${
-                                      game.result === "win"
+                                      tx.type === "win"
                                         ? "text-neon-green"
                                         : "text-neon-red"
                                     }`}
                                   >
-                                    {game.result === "win" ? "+" : "-"}
-                                    {getCurrencyIcon(game.currency)}
-                                    {formatBalance(
-                                      game.result === "win"
-                                        ? game.winAmount!
-                                        : game.betAmount,
-                                      game.currency,
-                                    )}
+                                    {tx.type === "win" ? "+" : "-"}
+                                    {getCurrencyIcon(tx.currency)}
+                                    {formatBalance(tx.amount, tx.currency)}
                                   </p>
                                   <Badge
                                     variant={
-                                      game.result === "win"
+                                      tx.type === "win"
                                         ? "default"
                                         : "destructive"
                                     }
                                     className="text-xs"
                                   >
-                                    {game.result.toUpperCase()}
+                                    {tx.type.toUpperCase()}
                                   </Badge>
                                 </div>
                               </div>
