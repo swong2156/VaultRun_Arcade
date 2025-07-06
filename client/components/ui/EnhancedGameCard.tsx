@@ -173,14 +173,14 @@ export default function EnhancedGameCard({ game }: EnhancedGameCardProps) {
         return "Ξ";
       case "USDT":
         return "₮";
-      case "USD":
-        return "$";
-      case "EUR":
-        return "€";
-      case "GBP":
-        return "£";
+      case "MATIC":
+        return "⟡";
+      case "BNB":
+        return "⬨";
+      case "DOGE":
+        return "Ð";
       default:
-        return "$";
+        return "◊";
     }
   };
 
