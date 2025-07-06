@@ -22,10 +22,10 @@ export default function Navigation() {
 
   const navItems = [
     { to: "/dashboard", icon: Home, label: "Dashboard" },
+    { to: "/arcade", icon: Menu, label: "Arcade" },
     { to: "/referral", icon: Users, label: "Referral" },
     { to: "/history", icon: History, label: "History" },
     { to: "/settings", icon: Settings, label: "Settings" },
-    { to: "/faq", icon: HelpCircle, label: "FAQ" },
   ];
 
   const isActive = (path: string) => {
