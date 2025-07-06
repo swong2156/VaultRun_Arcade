@@ -55,9 +55,10 @@ export default function Referral() {
     }
   }, [address]);
 
-  const referralLink = address
-    ? `https://vault-run-arcade.vercel.app?ref=${referralCode}`
-    : "";
+  const referralLink =
+    address || referralCode
+      ? `https://t.me/VaultRun_bot?start=${referralCode}`
+      : "";
 
   const copyReferralLink = () => {
     if (referralLink) {
