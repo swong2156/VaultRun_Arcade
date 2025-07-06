@@ -56,7 +56,7 @@ interface AppContextType {
   processReferral: (referrerCode: string) => Promise<void>;
 
   // Sound & Haptic
-  playSound: (type: "win" | "loss" | "play" | "click") => void;
+  playSound: (type: SoundType) => void;
   haptic: (type: "light" | "medium" | "heavy") => void;
 
   // Leaderboard
