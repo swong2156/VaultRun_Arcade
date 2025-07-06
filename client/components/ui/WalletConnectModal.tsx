@@ -103,6 +103,13 @@ export default function WalletConnectModal({
   const { playSound, haptic, t } = useApp();
   const [selectedWallet, setSelectedWallet] = useState<string | null>(null);
 
+  // Cleanup on unmount or modal close
+  useEffect(() => {
+    if (!open) {
+      setSelectedWallet(null);
+    }
+  }, [open]);
+
   const handleWalletSelect = async (walletId: string) => {
     try {
       setSelectedWallet(walletId);
