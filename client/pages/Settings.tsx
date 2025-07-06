@@ -159,7 +159,7 @@ export default function Settings() {
                     </div>
                     <div className="text-center p-3 bg-gray-800 rounded-lg">
                       <div className="text-2xl font-bold text-neon-purple">
-                        {user.total_staked.toFixed(4)}
+                        {(user.total_staked || 0).toFixed(4)}
                       </div>
                       <div className="text-xs text-gray-400">
                         {t("total_staked")}
@@ -369,7 +369,7 @@ export default function Settings() {
                                   : code === "ar"
                                     ? "🇸🇦"
                                     : code === "de"
-                                      ? "🇩🇪"
+                                      ? "��🇪"
                                       : code === "tr"
                                         ? "🇹🇷"
                                         : code === "pt"
