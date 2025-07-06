@@ -169,7 +169,7 @@ export default function Dashboard() {
                 {/* Wallet Connection */}
                 {!isConnected ? (
                   <Button
-                    onClick={connect}
+                    onClick={() => setShowWalletModal(true)}
                     className="bg-neon-green text-black hover:bg-neon-green/80"
                   >
                     <Wallet className="w-4 h-4 mr-2" />
