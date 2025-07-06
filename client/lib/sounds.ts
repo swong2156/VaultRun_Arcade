@@ -226,22 +226,26 @@ class SoundEngine {
       } else {
         // Sequence of notes
         config.frequency.forEach((freq, index) => {
-          setTimeout(
+          const timeoutId = setTimeout(
             () => {
-              this.playNote(
-                freq * pitchMultiplier,
-                config.duration / config.frequency.length,
-                volume,
-                config.type,
-                config.envelope,
-              );
+              try {
+                this.playNote(
+                  freq * pitchMultiplier,
+                  config.duration / config.frequency.length,
+                  volume,
+                  config.type,
+                  config.envelope,
+                );
+              } catch (error) {
+                // Ignore individual note errors
+              }
             },
             (index * config.duration * 1000) / config.frequency.length,
           );
         });
       }
     } catch (error) {
-      console.warn("Failed to play sound:", error);
+      // Silently ignore sound errors to prevent app crashes
     }
   }
 
