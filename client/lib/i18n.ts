@@ -299,7 +299,7 @@ export const translations: Record<Language, Record<string, string>> = {
     faq: "الأسئلة الشائعة",
 
     // Games
-    flip_game: "لعبة ��لقلب",
+    flip_game: "لعبة القلب",
     crash_game: "كراش",
     dice_roll: "النرد",
     prediction_market: "التنبؤ",
@@ -529,7 +529,7 @@ export const translations: Record<Language, Record<string, string>> = {
     account_information: "账户信息",
     game_preferences: "游戏偏好",
     display_interface: "显示和界面",
-    security_privacy: "安全���隐私",
+    security_privacy: "安全和隐私",
     sound_effects: "音效",
     haptic_feedback: "触觉反馈",
     notifications: "通知",
@@ -560,6 +560,7 @@ export const formatCurrency = (
     de: new Intl.NumberFormat("de-DE"),
     tr: new Intl.NumberFormat("tr-TR"),
     pt: new Intl.NumberFormat("pt-BR"),
+    zh: new Intl.NumberFormat("zh-CN"),
   };
 
   const formatter = formatters[language] || formatters.en;
