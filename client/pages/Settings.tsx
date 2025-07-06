@@ -140,7 +140,7 @@ export default function Settings() {
                     </div>
                     <div className="text-center p-3 bg-gray-800 rounded-lg">
                       <div className="text-2xl font-bold text-neon-blue">
-                        {user.total_wins}
+                        {user.total_wins || 0}
                       </div>
                       <div className="text-xs text-gray-400">{t("wins")}</div>
                     </div>
@@ -369,7 +369,7 @@ export default function Settings() {
                                   : code === "ar"
                                     ? "🇸🇦"
                                     : code === "de"
-                                      ? "🇩��"
+                                      ? "🇩🇪"
                                       : code === "tr"
                                         ? "🇹🇷"
                                         : code === "pt"
