@@ -153,6 +153,8 @@ export function WalletProvider({ children }: { children: ReactNode }) {
         MATIC: Math.random() * 200 + 10,
         BNB: Math.random() * 5 + 0.5,
         DOGE: Math.random() * 1000 + 50,
+        ADA: Math.random() * 100 + 5,
+        SOL: Math.random() * 20 + 1,
       };
       setBalances(realBalances);
 
