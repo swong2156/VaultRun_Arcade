@@ -236,46 +236,48 @@ export default function Settings() {
             <CardHeader>
               <CardTitle className="text-white flex items-center gap-2">
                 <SettingsIcon className="w-5 h-5" />
-                Game Preferences
+                {t("game_preferences")}
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  {soundEnabled ? (
+                  {settings.sound_enabled ? (
                     <Volume2 className="w-5 h-5 text-neon-blue" />
                   ) : (
                     <VolumeX className="w-5 h-5 text-gray-500" />
                   )}
                   <div>
-                    <div className="text-white font-medium">Sound Effects</div>
+                    <div className="text-white font-medium">
+                      {t("sound_effects")}
+                    </div>
                     <div className="text-sm text-gray-400">
-                      Play sounds during games
+                      {t("play_sounds_during_games")}
                     </div>
                   </div>
                 </div>
                 <Switch
-                  checked={soundEnabled}
+                  checked={settings.sound_enabled}
                   onCheckedChange={handleSoundToggle}
                 />
               </div>
 
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  {notifications ? (
-                    <span className="text-neon-green text-xl">🔔</span>
-                  ) : (
-                    <span className="text-gray-500 text-xl">🔕</span>
-                  )}
+                  <Bell
+                    className={`w-5 h-5 ${settings.notifications_enabled ? "text-neon-green" : "text-gray-500"}`}
+                  />
                   <div>
-                    <div className="text-white font-medium">Notifications</div>
+                    <div className="text-white font-medium">
+                      {t("notifications")}
+                    </div>
                     <div className="text-sm text-gray-400">
-                      Get notified about wins and losses
+                      {t("get_notified_about_games")}
                     </div>
                   </div>
                 </div>
                 <Switch
-                  checked={notifications}
+                  checked={settings.notifications_enabled}
                   onCheckedChange={handleNotificationsToggle}
                 />
               </div>
@@ -283,22 +285,20 @@ export default function Settings() {
               {isInTelegram && (
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    {hapticFeedback ? (
-                      <span className="text-neon-purple text-xl">📳</span>
-                    ) : (
-                      <span className="text-gray-500 text-xl">📴</span>
-                    )}
+                    <Vibrate
+                      className={`w-5 h-5 ${settings.haptic_enabled ? "text-neon-purple" : "text-gray-500"}`}
+                    />
                     <div>
                       <div className="text-white font-medium">
-                        Haptic Feedback
+                        {t("haptic_feedback")}
                       </div>
                       <div className="text-sm text-gray-400">
-                        Vibrate on game actions
+                        {t("vibrate_on_game_actions")}
                       </div>
                     </div>
                   </div>
                   <Switch
-                    checked={hapticFeedback}
+                    checked={settings.haptic_enabled}
                     onCheckedChange={handleHapticToggle}
                   />
                 </div>
