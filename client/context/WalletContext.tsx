@@ -24,6 +24,8 @@ export interface WalletBalance {
   MATIC: number;
   BNB: number;
   DOGE: number;
+  ADA: number;
+  SOL: number;
 }
 
 export interface Transaction {
