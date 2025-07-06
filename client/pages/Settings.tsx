@@ -1,11 +1,20 @@
 import { useState, useEffect } from "react";
 import { useWallet } from "@/context/WalletContext";
 import { useTelegram } from "@/context/TelegramContext";
+import { useApp } from "@/context/AppContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import Navigation from "@/components/ui/Navigation";
+import { languages, Language } from "@/lib/i18n";
 import {
   Wallet,
   Settings as SettingsIcon,
@@ -16,8 +25,10 @@ import {
   Smartphone,
   Globe,
   Shield,
-  LogOut,
   User,
+  Palette,
+  Bell,
+  Vibrate,
 } from "lucide-react";
 import { toast } from "sonner";
 
