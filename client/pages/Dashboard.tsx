@@ -91,6 +91,10 @@ export default function Dashboard() {
         return "⬨";
       case "DOGE":
         return "Ð";
+      case "ADA":
+        return "₳";
+      case "SOL":
+        return "◎";
       default:
         return "◊";
     }
