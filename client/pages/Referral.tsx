@@ -149,32 +149,48 @@ export default function Referral() {
             <CardHeader>
               <CardTitle className="text-neon-green flex items-center gap-2">
                 <Share2 className="w-5 h-5" />
-                Your Referral Link
+                Your Telegram Referral Link
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex gap-2">
-                <Input
-                  value={referralLink}
-                  readOnly
-                  className="bg-gray-800 border-gray-700 text-white"
-                />
+              <div className="p-3 bg-gray-800 rounded-lg">
+                <p className="text-sm text-gray-400 mb-2">
+                  📱 Share this Telegram bot link to invite friends:
+                </p>
+                <div className="flex gap-2">
+                  <Input
+                    value={referralLink}
+                    readOnly
+                    className="bg-gray-700 border-gray-600 text-white font-mono text-sm"
+                  />
+                  <Button
+                    onClick={copyReferralLink}
+                    variant="outline"
+                    size="icon"
+                    className="border-neon-green text-neon-green hover:bg-neon-green hover:text-black"
+                  >
+                    <Copy className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <Button
+                  onClick={shareReferralLink}
+                  className="bg-neon-green text-black hover:bg-neon-green/80"
+                >
+                  <Share2 className="w-4 h-4 mr-2" />
+                  Share via Telegram
+                </Button>
                 <Button
                   onClick={copyReferralLink}
                   variant="outline"
-                  size="icon"
-                  className="border-neon-green text-neon-green hover:bg-neon-green hover:text-black"
+                  className="border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-black"
                 >
-                  <Copy className="w-4 h-4" />
+                  <Copy className="w-4 h-4 mr-2" />
+                  Copy Link
                 </Button>
               </div>
-              <Button
-                onClick={shareReferralLink}
-                className="w-full bg-neon-green text-black hover:bg-neon-green/80"
-              >
-                <Share2 className="w-4 h-4 mr-2" />
-                Share Referral Link
-              </Button>
             </CardContent>
           </Card>
 
