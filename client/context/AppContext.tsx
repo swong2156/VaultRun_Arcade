@@ -193,6 +193,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setLanguageState(newSettings.language as Language);
     }
 
+    // Update sound engine when sound settings change
+    if (newSettings.sound_enabled !== undefined) {
+      enableSounds(newSettings.sound_enabled);
+    }
+
     try {
       await supabase
         .from("users")
