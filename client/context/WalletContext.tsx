@@ -7,7 +7,15 @@ import React, {
 } from "react";
 import { toast } from "sonner";
 
-export type CryptoCurrency = "ETH" | "USDT" | "BTC" | "MATIC" | "BNB" | "DOGE";
+export type CryptoCurrency =
+  | "ETH"
+  | "USDT"
+  | "BTC"
+  | "MATIC"
+  | "BNB"
+  | "DOGE"
+  | "ADA"
+  | "SOL";
 
 export interface WalletBalance {
   ETH: number;
