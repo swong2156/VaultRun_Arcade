@@ -45,6 +45,7 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [showWalletModal, setShowWalletModal] = useState(false);
 
   // Calculate game stats from transactions
   const gameStats = {
