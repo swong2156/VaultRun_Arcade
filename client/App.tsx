@@ -26,22 +26,26 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <TelegramProvider>
         <WalletProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/referral" element={<Referral />} />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/history" element={<TransactionHistory />} />
-                <Route path="/faq" element={<FAQ />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </BrowserRouter>
-          </TooltipProvider>
+          <AppProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/arcade" element={<Arcade />} />
+                  <Route path="/referral" element={<Referral />} />
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/history" element={<TransactionHistory />} />
+                  <Route path="/leaderboard" element={<Leaderboard />} />
+                  <Route path="/faq" element={<FAQ />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </BrowserRouter>
+            </TooltipProvider>
+          </AppProvider>
         </WalletProvider>
       </TelegramProvider>
     </QueryClientProvider>
