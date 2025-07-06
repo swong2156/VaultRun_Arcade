@@ -113,18 +113,10 @@ export default function Dashboard() {
                 </h1>
                 <Badge
                   variant="outline"
-                  className="bg-neon-green/10 text-neon-green border-neon-green"
+                  className="bg-neon-blue/10 text-neon-blue border-neon-blue"
                 >
-                  {isInTelegram ? "📱 Telegram" : "🟢 Web"}
+                  👋 Vault
                 </Badge>
-                {user && (
-                  <Badge
-                    variant="outline"
-                    className="bg-neon-blue/10 text-neon-blue border-neon-blue hidden sm:flex"
-                  >
-                    👋 {user.first_name}
-                  </Badge>
-                )}
               </div>
 
               <div className="flex items-center gap-2 md:gap-4">
