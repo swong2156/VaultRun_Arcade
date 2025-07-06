@@ -114,8 +114,10 @@ export default function TransactionHistory() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-4">
-      <div className="max-w-4xl mx-auto space-y-6">
+    <div className="min-h-screen bg-black text-white">
+      <Navigation />
+      <div className="main-content p-4">
+        <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
         <div className="text-center space-y-2">
           <h1 className="text-4xl font-bold text-neon-green">
