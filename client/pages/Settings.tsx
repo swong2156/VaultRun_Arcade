@@ -391,53 +391,39 @@ export default function Settings() {
             <CardHeader>
               <CardTitle className="text-white flex items-center gap-2">
                 <Shield className="w-5 h-5" />
-                Security & Privacy
+                {t("security_privacy")}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="p-4 bg-gray-800 rounded-lg">
                 <h3 className="text-white font-medium mb-2">
-                  🔐 Privacy Notice
+                  🔐 {t("privacy_notice")}
                 </h3>
                 <p className="text-sm text-gray-400">
-                  VaultRun uses WalletConnect to securely connect your wallet.
-                  We never store your private keys or seed phrases. All
-                  transactions are initiated and signed from your connected
-                  wallet only.
+                  {t("privacy_notice_text")}
                 </p>
               </div>
 
               <div className="p-4 bg-gray-800 rounded-lg">
-                <h3 className="text-white font-medium mb-2">📊 Data Usage</h3>
-                <p className="text-sm text-gray-400">
-                  We only store your game history and preferences locally in
-                  your browser. No personal data is sent to external servers.
-                </p>
+                <h3 className="text-white font-medium mb-2">
+                  📊 {t("data_usage")}
+                </h3>
+                <p className="text-sm text-gray-400">{t("data_usage_text")}</p>
+              </div>
+
+              <div className="p-4 bg-gray-800 rounded-lg">
+                <h3 className="text-white font-medium mb-2">
+                  🛡️ {t("security_features")}
+                </h3>
+                <ul className="text-sm text-gray-400 space-y-1">
+                  <li>• {t("wallet_connect_security")}</li>
+                  <li>• {t("no_private_key_storage")}</li>
+                  <li>• {t("user_controlled_transactions")}</li>
+                  <li>• {t("encrypted_data_storage")}</li>
+                </ul>
               </div>
             </CardContent>
           </Card>
-
-          {/* Wallet Actions */}
-          {isConnected && (
-            <Card className="bg-gray-900 border-red-500">
-              <CardHeader>
-                <CardTitle className="text-red-400 flex items-center gap-2">
-                  <LogOut className="w-5 h-5" />
-                  Wallet Actions
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Button
-                  onClick={handleDisconnect}
-                  variant="destructive"
-                  className="w-full"
-                >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Disconnect Wallet
-                </Button>
-              </CardContent>
-            </Card>
-          )}
 
           {/* App Info */}
           <Card className="bg-gray-900 border-gray-700">
