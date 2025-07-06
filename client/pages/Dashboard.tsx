@@ -74,13 +74,6 @@ export default function Dashboard() {
       ? gamesList
       : gamesList.filter((game) => game.category === selectedCategory);
 
-  const formatBalance = (amount: number, currency: string) => {
-    if (currency === "BTC" || currency === "ETH") {
-      return amount.toFixed(6);
-    }
-    return amount.toLocaleString("en-US", { minimumFractionDigits: 2 });
-  };
-
   const getCurrencyIcon = (currency: string) => {
     switch (currency) {
       case "BTC":
@@ -89,14 +82,14 @@ export default function Dashboard() {
         return "Ξ";
       case "USDT":
         return "₮";
-      case "USD":
-        return "$";
-      case "EUR":
-        return "€";
-      case "GBP":
-        return "£";
+      case "MATIC":
+        return "⟡";
+      case "BNB":
+        return "⬨";
+      case "DOGE":
+        return "Ð";
       default:
-        return "$";
+        return "◊";
     }
   };
 
