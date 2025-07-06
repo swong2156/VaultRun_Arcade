@@ -124,33 +124,93 @@ export default function Dashboard() {
               )}
             </div>
 
-            <div className="flex items-center gap-4">
-              {/* Currency Selector */}
-              <Select value={currentCurrency} onValueChange={setCurrency}>
-                <SelectTrigger className="w-32 bg-card border-primary/20">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-card border-primary/20">
-                  {Object.keys(balances).map((currency) => (
-                    <SelectItem key={currency} value={currency}>
-                      {getCurrencyIcon(currency)} {currency}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+            <div className="flex items-center gap-2 md:gap-4">
+              {/* Navigation Buttons */}
+              <div className="hidden sm:flex gap-1">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigate("/referral")}
+                  className="text-xs"
+                >
+                  <Users className="w-3 h-3 mr-1" />
+                  Referral
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigate("/history")}
+                  className="text-xs"
+                >
+                  <History className="w-3 h-3 mr-1" />
+                  History
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigate("/settings")}
+                  className="text-xs"
+                >
+                  <Settings className="w-3 h-3 mr-1" />
+                  Settings
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => navigate("/faq")}
+                  className="text-xs"
+                >
+                  <HelpCircle className="w-3 h-3 mr-1" />
+                  FAQ
+                </Button>
+              </div>
 
-              {/* Current Balance */}
-              <Card className="bg-gradient-to-r from-primary/20 to-neon-blue/20 border-primary/30">
-                <CardContent className="p-4">
-                  <div className="text-center">
-                    <p className="text-sm text-muted-foreground">Balance</p>
-                    <p className="text-xl font-bold text-neon-green">
-                      {getCurrencyIcon(currentCurrency)}{" "}
-                      {formatBalance(getCurrentBalance(), currentCurrency)}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+              {/* Wallet Connection */}
+              {!isConnected ? (
+                <Button
+                  onClick={connect}
+                  className="bg-neon-green text-black hover:bg-neon-green/80"
+                >
+                  <Wallet className="w-4 h-4 mr-2" />
+                  Connect Wallet
+                </Button>
+              ) : (
+                <>
+                  {/* Currency Selector */}
+                  <Select value={currentCurrency} onValueChange={setCurrency}>
+                    <SelectTrigger className="w-24 md:w-32 bg-card border-primary/20">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="bg-card border-primary/20">
+                      {Object.keys(balances).map((currency) => (
+                        <SelectItem key={currency} value={currency}>
+                          {getCurrencyIcon(currency)} {currency}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+
+                  {/* Current Balance */}
+                  <Card className="bg-gradient-to-r from-primary/20 to-neon-blue/20 border-primary/30">
+                    <CardContent className="p-2 md:p-4">
+                      <div className="text-center">
+                        <p className="text-xs md:text-sm text-muted-foreground">
+                          Balance
+                        </p>
+                        <p className="text-sm md:text-xl font-bold text-neon-green">
+                          {getCurrencyIcon(currentCurrency)}{" "}
+                          {formatBalance(getCurrentBalance(), currentCurrency)}
+                        </p>
+                        {address && (
+                          <p className="text-xs text-muted-foreground font-mono">
+                            {address.slice(0, 6)}...{address.slice(-4)}
+                          </p>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </>
+              )}
             </div>
           </div>
         </div>
