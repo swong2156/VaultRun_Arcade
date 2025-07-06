@@ -299,7 +299,7 @@ export const translations: Record<Language, Record<string, string>> = {
     faq: "الأسئلة الشائعة",
 
     // Games
-    flip_game: "لعبة القلب",
+    flip_game: "لعبة ��لقلب",
     crash_game: "كراش",
     dice_roll: "النرد",
     prediction_market: "التنبؤ",
@@ -480,6 +480,63 @@ export const translations: Record<Language, Record<string, string>> = {
     language: "Idioma",
     dark_mode: "Modo Escuro",
     light_mode: "Modo Claro",
+  },
+
+  zh: {
+    // Common
+    loading: "加载中...",
+    connect_wallet: "连接钱包",
+    disconnect_wallet: "断开钱包",
+    balance: "余额",
+    play: "游戏",
+    win: "赢",
+    loss: "输",
+    stake: "下注",
+
+    // Navigation
+    home: "首页",
+    arcade: "游戏厅",
+    dashboard: "仪表板",
+    referrals: "推荐",
+    history: "历史",
+    settings: "设置",
+    faq: "常见问题",
+
+    // Games
+    flip_game: "抛硬币",
+    crash_game: "崩盘游戏",
+    dice_roll: "掷骰子",
+    prediction_market: "预测市场",
+
+    // Messages
+    you_won: "🎉 您赢了！",
+    you_lost: "💔 您输了！",
+    insufficient_balance: "💰 余额不足！",
+    transaction_pending: "🪙 交易处理中...",
+    transaction_confirmed: "💎 交易已确认！",
+    transaction_failed: "❌ 交易失败",
+
+    // Referrals
+    invite_friends: "邀请朋友",
+    referral_link: "推荐链接",
+    referred_users: "推荐用户",
+    commission_earned: "获得佣金",
+    share_link: "分享链接",
+
+    // Settings
+    settings: "设置",
+    manage_preferences: "管理您的账户和偏好",
+    account_information: "账户信息",
+    game_preferences: "游戏偏好",
+    display_interface: "显示和界面",
+    security_privacy: "安全���隐私",
+    sound_effects: "音效",
+    haptic_feedback: "触觉反馈",
+    notifications: "通知",
+    theme: "主题",
+    language: "语言",
+    dark_mode: "深色模式",
+    light_mode: "浅色模式",
   },
 };
 
