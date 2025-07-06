@@ -84,6 +84,8 @@ const initialBalances: WalletBalance = {
   MATIC: 0,
   BNB: 0,
   DOGE: 0,
+  ADA: 0,
+  SOL: 0,
 };
 
 // Mock balances for testing (when wallet is not connected)
@@ -94,6 +96,8 @@ const mockBalances: WalletBalance = {
   MATIC: 100,
   BNB: 5,
   DOGE: 1000,
+  ADA: 50,
+  SOL: 8,
 };
 
 export function WalletProvider({ children }: { children: ReactNode }) {
