@@ -578,6 +578,10 @@ export const formatCurrency = (
       return `⬨ ${formatter.format(amount)}`;
     case "DOGE":
       return `Ð ${formatter.format(amount)}`;
+    case "ADA":
+      return `₳ ${formatter.format(amount)}`;
+    case "SOL":
+      return `◎ ${formatter.format(amount)}`;
     default:
       return `${currency} ${formatter.format(amount)}`;
   }
